@@ -1,0 +1,2 @@
+supertab.vba: call delete('/home/kenji/.vim/doc/supertab.txt')|call delete('/home/kenji/.vim/plugin/supertab.vim')
+Mercury.vba: call delete('/home/kenji/.vim/doc/mercury.txt')|call delete('/home/kenji/.vim/ftdetect/mercury.vim')|call delete('/home/kenji/.vim/ftplugin/mercury.vim')|call delete('/home/kenji/.vim/plugin/mercury_commands.vim')|call delete('/home/kenji/.vim/syntax/mercury.vim')
