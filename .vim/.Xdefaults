@@ -1,0 +1,41 @@
+! Normal
+! ! color8    black
+! ! color9    red
+! ! color10   green
+! ! color11   yellow
+! ! color12   blue
+! ! color13   purple
+! ! color14   cyan
+! ! color15   white
+
+URxvt*color8:#080808
+URxvt*color9:#ff8787
+URxvt*color10:#5faf5f
+URxvt*color11:#ffaf5f
+URxvt*color12:#5fafff
+URxvt*color13:#5f5fff
+URxvt*color14:#00af87
+URxvt*color15:#d7d7ff
+URxvt*color0:#080808
+URxvt*color2:#5faf5f
+
+URxvt*iconFile:/usr/share/pixmaps/rxvt-unicode.png
+URxvt*foreground:#d7d7ff
+URxvt*background:#080808
+URxvt*saveLines:10000
+!URxvt*font:xft:inconsolata-g:pixelsize=11
+URxvt*font:xft:liberation mono:pixelsize=11
+URxvt*scrollBar:False
+! URxvt*scrollBar_right:true
+! URxvt*scrollstyle:plain
+URxvt.perl-ext-common:default,tabbedex,matcher
+URxvt.urlLauncher:/usr/bin/opera
+URxvt.matcher.button:1
+URxvt.tabbed.tabbar-fg:15
+URxvt.tabbed.tabbar-bg:8
+URxvt.tabbed.tab-fg:10
+URxvt.tabbed.tab-bg:8
+! URxvt*letterSpace:-3
+
+! Xcursor.theme: Pulse-Glass
+Xcursor.theme: chromeglass
