@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/kenji/.wmii'
-let g:netrw_dirhist_2='/home/kenji/Incoming/SBB Anthology 1977 - 2004/10 Memento z balalnym tryptykiem'
-let g:netrw_dirhist_3='/home/kenji/.config/Trolltech'
