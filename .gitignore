@@ -1,8 +1,1 @@
-log/*.log
-tmp/*
-tmp/**/*
-doc/api
-doc/app
-db/*.sqlite3
-*.swp
-*~
+*

@@ -40,9 +40,9 @@ map Q gq
 inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
+"if has('mouse')
+"  set mouse=a
+"endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -98,7 +98,6 @@ set softtabstop=4
 set completeopt=menu,preview
 set expandtab
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set softtabstop=2
-autocmd FileType cucumber set tabstop=2|set shiftwidth=2|set softtabstop=2
 
 let g:Tb_MapWindowNavVim=1
 let g:Tb_MapWindowNavArrows=1
