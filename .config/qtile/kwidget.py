@@ -1,8 +1,6 @@
 from libqtile import manager
 from libqtile.widget import battery
 
-FULL = 'Full'
-
 class Battery2(battery.Battery):
     defaults = manager.Defaults(
         ("font", "Arial", "Clock font"),
@@ -28,35 +26,22 @@ class Battery2(battery.Battery):
         full = float(self._get_param(self.energy_full_file))
         power = float(self._get_param(self.power_now_file))
 
-        if power != 0.0:
-            if stat == battery.DISCHARGING:
-                time = now / power
-            elif stat == battery.CHARGING:
-                time = (full - now) / power
+        if stat == battery.CHARGING or stat == battery.DISCHARGING:
+            if power != 0.0:
+                if stat == battery.DISCHARGING:
+                    time = now / power
+                elif stat == battery.CHARGING:
+                    time = (full - now) / power
 
-            hour = int(time)
-            min = int(time * 60) % 60
-            sec = int(time * 3600) % 60
-            return self.format.format(char = stat,
-                    percent = now / full,
-                    hour = hour, min = min, sec = sec)
-        elif stat == battery.DISCHARGING or stat == battery.CHARGING:
-            msg = '(at zero rate) '
-        elif stat == FULL or stat == battery.UNKNOWN:
+                hour = int(time)
+                min = int(time * 60) % 60
+                sec = int(time * 3600) % 60
+                return self.format.format(char = stat,
+                        percent = now / full,
+                        hour = hour, min = min, sec = sec)
+            else:
+                msg = '(at zero rate) '
+        else:
             msg = ''
         return self.full_format.format(char = stat,
                 msg = msg, percent = now / full)
-
-#class CurrentLayout(base._TextBox):
-#    defaults = manager.Defaults(
-#        ("font", "Arial", "Text font"),
-#        ("fontsize", None, "Font pixel size. Calculated if None."),
-#        ("padding", None, "Padding left and right. Calculated if None."),
-#        ("background", None, "Background colour."),
-#        ("foreground", "#ffffff", "Foreground colour.")
-#    )
-#    def __init__(self, width = bar.CALCULATED, **config):
-#        base._TextBox.__init__(self, "", width, **config)
-#        def hook_response(layout):
-#            self.text = layout.name
-#        hook.subscribe.layout_change(hook_response)

@@ -124,9 +124,9 @@ nmap <F12> :TagbarToggle<CR>
 noremap ml :wincmd h<CR>
 noremap mr :wincmd l<CR>
 
-autocmd VimEnter * nested TagbarOpen
+"autocmd VimEnter * nested TagbarOpen
 "autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd l
+"autocmd VimEnter * wincmd l
 
 "buffers
 noremap gt :bnext<CR>

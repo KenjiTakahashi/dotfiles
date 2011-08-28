@@ -43,8 +43,7 @@ for i in groups:
 layouts = [
     layout.RatioTile(border_width = 0),
     layout.Max(),
-    layout.Tile(border_width = 0),
-    layout.TreeTab()
+    layout.Floating(border_width = 0)
 ]
 
 screens = [
@@ -105,5 +104,5 @@ screens = [
 
 @hook.subscribe.client_managed
 def opacity(window):
-    if not window.match(wname = "MPlayer"):
+    if not window.match(wname = "MPlayer") and not window.match(wmclass = "vlc"):
         window.opacity = .85
