@@ -7,6 +7,7 @@ import kwidget
 modkey = "mod4"
 mf = 'liberation mono'
 bg = '#2d2d2d'
+fg = '#64a764'
 
 keys = [
     Key([modkey], "a", lazy.layout.next()),
@@ -46,8 +47,40 @@ layouts = [
     layout.Floating(border_width = 0)
 ]
 
+graphs_settings = {
+    'graph_color': fg,
+    'fill_color': fg,
+    'background': bg,
+    'border_width': 0,
+    'line_width': 2,
+    'margin_y': 0,
+    'margin_x': 0
+}
+
 screens = [
     Screen(
+        top = bar.Bar([
+            widget.CPUGraph(
+                **graphs_settings
+            ),
+            widget.MemoryGraph(
+                type = 'box',
+                **graphs_settings
+            ),
+            widget.SwapGraph(
+                type = 'box',
+                **graphs_settings
+            ),
+            widget.NetGraph(
+                interface = 'wlan0',
+                **graphs_settings
+            ),
+            widget.NetGraph(
+                interface = 'wlan0',
+                bandwidth_type = 'up',
+                **graphs_settings
+            )
+        ], 16, opacity = .85, background = bg),
         bottom = bar.Bar([
             widget.GroupBox(
                 font = mf,
@@ -57,7 +90,7 @@ screens = [
                 margin_y = 1,
                 padding = 0,
                 inactive = '000000',
-                this_screen_border = '64a764'
+                this_screen_border = fg
             ),
             widget.Sep(
                 background = bg,
