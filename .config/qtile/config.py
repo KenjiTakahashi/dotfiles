@@ -54,7 +54,8 @@ graphs_settings = {
     'border_width': 0,
     'line_width': 2,
     'margin_y': 0,
-    'margin_x': 0
+    'margin_x': 0,
+    'start_pos': 'top'
 }
 
 screens = [
