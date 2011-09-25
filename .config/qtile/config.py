@@ -80,6 +80,10 @@ screens = [
                 interface = 'wlan0',
                 bandwidth_type = 'up',
                 **graphs_settings
+            ),
+            widget.Mpris(
+                name = "gayeogi",
+                objname = "org.mpris.gayeogi"
             )
         ], 16, opacity = .85, background = bg),
         bottom = bar.Bar([
