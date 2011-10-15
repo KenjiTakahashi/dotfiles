@@ -9,6 +9,11 @@ mf = 'liberation mono'
 bg = '#2d2d2d'
 fg = '#64a764'
 
+layout.floating.FLOAT_WM_TYPES = {
+    'notification': 1,
+    'splash': 1
+}
+
 keys = [
     Key([modkey], "a", lazy.layout.next()),
     Key([modkey], "d", lazy.layout.previous()),
@@ -46,6 +51,12 @@ layouts = [
     layout.Max(),
     layout.Floating(border_width = 0)
 ]
+
+floating_layout = layout.Floating(
+    border_width = 0,
+    max_border_width = 0,
+    fullscreen_border_width = 0
+)
 
 graphs_settings = {
     'graph_color': fg,
