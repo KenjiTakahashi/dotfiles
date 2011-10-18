@@ -144,3 +144,7 @@ nmap <silent> mb :CommandTBuffer<CR>
 
 "gayeogi
 noremap mg :!python2 gayeogi.py<CR>
+
+"insert coding to python/ruby files
+au BufNewFile *.py put! ='# -*- coding: utf-8 -*-'
+au BufNewFile *.rb put! ='# coding: utf-8'
