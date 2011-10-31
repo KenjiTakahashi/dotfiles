@@ -142,9 +142,13 @@ noremap gc :bn<bar>bd # <CR>
 nmap <silent> mf :CommandT<CR>
 nmap <silent> mb :CommandTBuffer<CR>
 
-"gayeogi
-noremap mg :!python2 gayeogi.py<CR>
-
 "insert coding to python/ruby files
 au BufNewFile *.py put! ='# -*- coding: utf-8 -*-'
 au BufNewFile *.rb put! ='# coding: utf-8'
+
+"highlight chars in > 80 column
+highlight OverLength ctermbg=58 ctermfg=255
+match OverLength '\%81v.*'
+
+"adding timestamp
+nnoremap ts "=strftime("%d %B %Y, %R")<CR>P
