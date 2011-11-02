@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from libqtile import hook
 from libqtile.manager import Key, Screen, Group
 from libqtile.command import lazy
@@ -71,6 +73,11 @@ graphs_settings = {
     'margin_x': 0,
     'start_pos': 'top'
 }
+some_defaults = {
+    'font': mf,
+    'fontsize': 11,
+    'background': bg
+}
 
 screens = [
     Screen(
@@ -97,44 +104,39 @@ screens = [
             ),
             widget.Mpris(
                 name = "gayeogi",
-                objname = "org.mpris.gayeogi"
+                objname = "org.mpris.gayeogi",
+                **some_defaults
+            ),
+            widget.YahooWeather(
+                woeid = '526363',
+                format = '{condition_temp}°{units_temperature}',
+                **some_defaults
             )
         ], 16, opacity = .85, background = bg),
         bottom = bar.Bar([
             widget.GroupBox(
-                font = mf,
-                fontsize = 12,
                 borderwidth = 0,
-                background = bg,
                 margin_x = 0,
                 margin_y = 0,
-                padding = 1,
+                padding = 2,
                 highlight_method = 'block',
                 rounded = False,
                 inactive = '000000',
-                this_screen_border = fg
+                this_screen_border = fg,
+                **some_defaults
             ),
             widget.CurrentLayout(
-                font = mf,
-                fontsize = 11,
-                background = bg,
-                padding = 2
+                **some_defaults
             ),
             widget.WindowName(
-                font = mf,
-                fontsize = 11,
-                background = bg
+                **some_defaults
             ),
             kwidget.Battery2(
-                font = mf,
-                fontsize = 11,
-                background = bg
+                **some_defaults
             ),
             widget.Clock(
                 fmt = '%a %b %d %H:%M:%S %Z %Y',
-                font = mf,
-                fontsize = 11,
-                background = bg
+                **some_defaults
             )
         ], 16, opacity = .85)
     )
