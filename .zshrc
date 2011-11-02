@@ -30,11 +30,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 source /etc/profile
-#export PATH=/opt/tau/x86_64/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/java/bin:/opt/java/db/bin:/opt/java/jre/bin:/usr/bin/core_perl
 export EDITOR="vim"
 alias ls='ls --color=auto'
 alias todoc='clear && todo -c +'
-alias wicd-client='wicd-client -n'
 alias ta='tmux a'
 alias tre='transmission-remote-cli'
 alias wcd='wicd-curses'

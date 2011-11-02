@@ -7,7 +7,9 @@ import kwidget
 modkey = "mod4"
 mf = 'liberation mono'
 bg = '#2d2d2d'
-fg = '#64a764'
+#fg = '#5faf5f' #green
+#fg = '#5fafff' #blue
+fg = '#7e3560' #purple
 
 layout.floating.FLOAT_WM_TYPES = {
     'notification': 1,
@@ -47,6 +49,7 @@ for i in groups:
     keys.append(Key([modkey, "shift"], i.name, lazy.window.togroup(i.name)))
 
 layouts = [
+    layout.Tile(border_width = 0),
     layout.RatioTile(border_width = 0),
     layout.Max(),
     layout.Floating(border_width = 0)
@@ -100,31 +103,22 @@ screens = [
         bottom = bar.Bar([
             widget.GroupBox(
                 font = mf,
-                borderwidth = 1,
+                fontsize = 12,
+                borderwidth = 0,
                 background = bg,
-                margin_x = 1,
-                margin_y = 1,
-                padding = 0,
+                margin_x = 0,
+                margin_y = 0,
+                padding = 1,
+                highlight_method = 'block',
+                rounded = False,
                 inactive = '000000',
                 this_screen_border = fg
-            ),
-            widget.Sep(
-                background = bg,
-                foreground = '000000',
-                linewidth = 2,
-                padding = 4
             ),
             widget.CurrentLayout(
                 font = mf,
                 fontsize = 11,
                 background = bg,
                 padding = 2
-            ),
-            widget.Sep(
-                background = bg,
-                foreground = '000000',
-                linewidth = 2,
-                padding = 4
             ),
             widget.WindowName(
                 font = mf,
@@ -135,11 +129,6 @@ screens = [
                 font = mf,
                 fontsize = 11,
                 background = bg
-            ),
-            widget.Sep(
-                background = bg,
-                foreground = '000000',
-                linewidth = 2
             ),
             widget.Clock(
                 fmt = '%a %b %d %H:%M:%S %Z %Y',

@@ -8,17 +8,19 @@
 ! ! color14   cyan
 ! ! color15   white
 
+! to change main col: 2, 11
+
 URxvt*color8:#2d2d2d
 URxvt*color9:#ff8787
 URxvt*color10:#5faf5f
-URxvt*color11:#ffaf5f
+URxvt*color11:#d866ac
 URxvt*color12:#5fafff
 URxvt*color13:#5f5fff
 URxvt*color14:#00af87
 URxvt*color15:#d7d7ff
 URxvt*color0:#2d2d2d
 URxvt*color1:#ff8787
-URxvt*color2:#5faf5f
+URxvt*color2:#d866ac
 URxvt*color3:#ffaf5f
 URxvt*color4:#5fafff
 URxvt*color5:#5f5fff
@@ -39,7 +41,7 @@ URxvt.urlLauncher:/usr/bin/firefox
 URxvt.matcher.button:1
 URxvt.tabbed.tabbar-fg:15
 URxvt.tabbed.tabbar-bg:8
-URxvt.tabbed.tab-fg:10
+URxvt.tabbed.tab-fg:11
 URxvt.tabbed.tab-bg:8
 ! URxvt*letterSpace:-3
 
