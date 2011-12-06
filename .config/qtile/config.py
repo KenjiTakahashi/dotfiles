@@ -19,19 +19,20 @@ layout.floating.FLOAT_WM_TYPES = {
 }
 
 keys = [
-    Key([modkey], "a", lazy.layout.next()),
-    Key([modkey], "d", lazy.layout.previous()),
     Key([modkey], "p", lazy.spawn(
-            "dmenu_run -b -i -fn '{font}' -nb '{color}' -sb '{color}'".format(
-            font = mf, color = bg))
-        ),
+        "dmenu_run -b -i -fn '{font}' -nb '{color}' -sb '{color}'".format(
+            font = mf, color = bg
+        ))
+    ),
     Key([modkey], "c", lazy.spawn("anamnesis -b")),
     Key([modkey], "Return", lazy.spawn("urxvtc")),
     Key([modkey], "space", lazy.nextlayout()),
-    Key([modkey, "shift"], "space", lazy.layout.shuffle()),
+    Key([modkey, "shift"], "space", lazy.layout.prevlayout()),
     Key([modkey, "shift"], "c", lazy.window.kill()),
+    Key([modkey], "a", lazy.layout.next()),
+    Key([modkey], "d", lazy.layout.previous()),
     Key([modkey], "w", lazy.layout.up()),
-    Key([modkey], "s", lazy.layout.down()),
+    Key([modkey], "s", lazy.layout.down())
 ]
 
 groups = [
@@ -52,7 +53,7 @@ for i in groups:
 
 layouts = [
     layout.Tile(border_width = 0),
-    layout.RatioTile(border_width = 0),
+    layout.MonadTall(border_width = 0),
     layout.Max(),
     layout.Floating(border_width = 0)
 ]
@@ -105,9 +106,15 @@ screens = [
             widget.Mpris(
                 name = "gayeogi",
                 objname = "org.mpris.gayeogi",
+                width = bar.STRETCH,
+                **some_defaults
+            ),
+            widget.Canto(
+                update_delay = 1800,
                 **some_defaults
             ),
             widget.YahooWeather(
+                update_interval = 1800,
                 woeid = '526363',
                 format = '{condition_temp}°{units_temperature}',
                 **some_defaults
@@ -123,6 +130,7 @@ screens = [
                 rounded = False,
                 inactive = '000000',
                 this_screen_border = fg,
+                this_current_screen_border = fg,
                 **some_defaults
             ),
             widget.CurrentLayout(

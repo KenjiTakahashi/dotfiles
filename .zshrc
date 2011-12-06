@@ -31,13 +31,21 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 source /etc/profile
 export EDITOR="vim"
-alias ls='ls --color=auto'
+unalias gst # it conflicts with GNU Smalltalk
 alias todoc='clear && todo -c +'
+alias tn='tmux'
 alias ta='tmux a'
+alias tl='tmux list-sessions'
+alias tk='tmux kill-session -t'
 alias tre='transmission-remote-cli'
 alias wcd='wicd-curses'
 alias ac='aria2c -c'
+alias rs='canto'
+alias f='ranger'
+alias y='yaourt'
 sm() {
     cuebreakpoints $1 | shnsplit -t "%p_-_%a_-_%n_-_%t" -o $2 $3
 }
 alias :D='archey -s'
+alias mt='udisks --mount'
+alias umt='udisks --unmount'

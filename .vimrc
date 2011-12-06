@@ -148,7 +148,10 @@ au BufNewFile *.rb put! ='# coding: utf-8'
 
 "highlight chars in > 80 column
 highlight OverLength ctermbg=58 ctermfg=255
-match OverLength '\%81v.*'
+match OverLength '\%81v'
 
 "adding timestamp
 nnoremap ts "=strftime("%d %B %Y, %R")<CR>P
+
+map <F1> <Esc>
+imap <F1> <Esc>
