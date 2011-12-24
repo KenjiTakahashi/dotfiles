@@ -32,7 +32,10 @@ source $ZSH/oh-my-zsh.sh
 source /etc/profile
 export EDITOR="vim"
 unalias gst # it conflicts with GNU Smalltalk
-alias todoc='clear && todo -c +'
+alias gcam='gc -am'
+alias gf='g fetch'
+alias gd='g diff'
+alias tdc='clear && todo -c +'
 alias tn='tmux'
 alias ta='tmux a'
 alias tl='tmux list-sessions'

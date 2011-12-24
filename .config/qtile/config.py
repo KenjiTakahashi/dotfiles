@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from libqtile import hook
-from libqtile.manager import Key, Screen, Group
+from libqtile.manager import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget
 import kwidget
@@ -29,10 +29,22 @@ keys = [
     Key([modkey], "space", lazy.nextlayout()),
     Key([modkey, "shift"], "space", lazy.layout.prevlayout()),
     Key([modkey, "shift"], "c", lazy.window.kill()),
-    Key([modkey], "a", lazy.layout.next()),
-    Key([modkey], "d", lazy.layout.previous()),
-    Key([modkey], "w", lazy.layout.up()),
-    Key([modkey], "s", lazy.layout.down())
+    Key([modkey], "a", lazy.layout.up()),
+    Key([modkey], "d", lazy.layout.down()),
+    Key([modkey], "w", lazy.layout.shuffle_up()),
+    Key([modkey], "s", lazy.layout.shuffle_down()),
+    Key([modkey], "j", lazy.layout.grow()),
+    Key([modkey], "k", lazy.layout.shrink())
+]
+
+mouse = [
+    Drag([modkey], "Button1", lazy.window.set_position_floating(),
+        start=lazy.window.get_position()
+    ),
+    Drag([modkey], "Button3", lazy.window.set_size_floating(),
+        start=lazy.window.get_size()
+    ),
+    Click([modkey], "Button2", lazy.window.bring_to_front())
 ]
 
 groups = [
@@ -52,7 +64,6 @@ for i in groups:
     keys.append(Key([modkey, "shift"], i.name, lazy.window.togroup(i.name)))
 
 layouts = [
-    layout.Tile(border_width = 0),
     layout.MonadTall(border_width = 0),
     layout.Max(),
     layout.Floating(border_width = 0)
@@ -101,6 +112,21 @@ screens = [
             widget.NetGraph(
                 interface = 'wlan0',
                 bandwidth_type = 'up',
+                **graphs_settings
+            ),
+            widget.HDDGraph(
+                path = '/',
+                width = 20,
+                **graphs_settings
+            ),
+            widget.HDDGraph(
+                path = '/home',
+                width = 20,
+                **graphs_settings
+            ),
+            widget.HDDGraph(
+                path = '/mnt/music',
+                width = 20,
                 **graphs_settings
             ),
             widget.Mpris(
