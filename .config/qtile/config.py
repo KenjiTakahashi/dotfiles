@@ -13,18 +13,13 @@ bg = '#2d2d2d'
 #fg = '#5fafff' #blue
 fg = '#7e3560' #purple
 
-layout.floating.FLOAT_WM_TYPES = {
-    'notification': 1,
-    'splash': 1
-}
-
 keys = [
     Key([modkey], "p", lazy.spawn(
         "dmenu_run -b -i -fn '{font}' -nb '{color}' -sb '{color}'".format(
             font = mf, color = bg
         ))
     ),
-    Key([modkey], "c", lazy.spawn("anamnesis -b")),
+    Key([modkey], "c", lazy.spawn("copyq toggle")),
     Key([modkey], "Return", lazy.spawn("urxvtc")),
     Key([modkey], "space", lazy.nextlayout()),
     Key([modkey, "shift"], "space", lazy.layout.prevlayout()),
@@ -64,9 +59,9 @@ for i in groups:
     keys.append(Key([modkey, "shift"], i.name, lazy.window.togroup(i.name)))
 
 layouts = [
-    layout.MonadTall(border_width = 0),
+    layout.MonadTall(border_width=0),
     layout.Max(),
-    layout.Floating(border_width = 0)
+    layout.Floating(border_width=0, auto_float_types=['notification', 'splash'])
 ]
 
 floating_layout = layout.Floating(
@@ -165,18 +160,18 @@ screens = [
             widget.WindowName(
                 **some_defaults
             ),
-            kwidget.Battery2(
+            widget.BatteryIcon(
                 **some_defaults
             ),
             widget.Clock(
                 fmt = '%a %b %d %H:%M:%S %Z %Y',
                 **some_defaults
             )
-        ], 16, opacity = .85)
+        ], 16, opacity = .85, background = bg)
     )
 ]
 
 @hook.subscribe.client_managed
 def opacity(window):
-    if not window.match(wname = "MPlayer") and not window.match(wmclass = "vlc"):
+    if not window.match(wname = "mplayer2") and not window.match(wmclass = "vlc"):
         window.opacity = .85

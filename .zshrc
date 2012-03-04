@@ -47,8 +47,13 @@ alias rs='canto'
 alias f='ranger'
 alias y='yaourt'
 sm() {
-    cuebreakpoints $1 | shnsplit -t "%p_-_%a_-_%n_-_%t" -o $2 $3
+    cuebreakpoints *cue | shnsplit -t "%p_-_%a_-_%n_-_%t" -o flac *$1
 }
 alias :D='archey -s'
 alias mt='udisks --mount'
 alias umt='udisks --unmount'
+alias umta='udiskie-umount -a'
+plo() {
+    pdflatex $1.tex && zathura $1.pdf
+}
+alias p2="python2"

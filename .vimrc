@@ -98,7 +98,8 @@ set softtabstop=4
 set completeopt=menu,preview
 set expandtab
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set softtabstop=2
-autocmd FileType coffee set tabstop=2|set shiftwidth=2|set softtabstop=2
+"autocmd FileType coffee set tabstop=2|set shiftwidth=2|set softtabstop=2
+autocmd FileType javascript set tabstop=2|set shiftwidth=2|set softtabstop=2
 autocmd FileType eruby set tabstop=2|set shiftwidth=2|set softtabstop=2
 autocmd FileType sass set tabstop=2|set shiftwidth=2|set softtabstop=2
 autocmd FileType haml set tabstop=2|set shiftwidth=2|set softtabstop=2
