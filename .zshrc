@@ -30,6 +30,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 source /etc/profile
+export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
+export GEM_HOME=$HOME/.gem/ruby/1.9.1
 export EDITOR="vim"
 unalias gst # it conflicts with GNU Smalltalk
 alias gcam='gc -am'

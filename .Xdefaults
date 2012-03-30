@@ -36,7 +36,7 @@ URxvt*font:xft:liberation mono:pixelsize=11
 URxvt*scrollBar:False
 ! URxvt*scrollBar_right:true
 ! URxvt*scrollstyle:plain
-URxvt.perl-ext-common:default,tabbedex,matcher
+URxvt.perl-ext-common:default,matcher
 URxvt.urlLauncher:/usr/bin/firefox
 URxvt.matcher.button:1
 URxvt.tabbed.tabbar-fg:15

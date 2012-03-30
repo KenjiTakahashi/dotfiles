@@ -10,7 +10,8 @@ mf = 'liberation mono'
 bg = '#2d2d2d'
 #fg = '#5faf5f' #green
 #fg = '#5fafff' #blue
-fg = '#7e3560' #purple
+#fg = '#7e3560' #purple
+fg = '#ffffff' #white
 
 keys = [
     Key([modkey], "p", lazy.spawn(
