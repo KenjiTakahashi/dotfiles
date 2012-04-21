@@ -27,12 +27,11 @@ URxvt*color5:#5f5fff
 URxvt*color6:#00af87
 URxvt*color7:#d7d7ff
 
-! URxvt*iconFile:/usr/share/pixmaps/rxvt-unicode.png
 URxvt*foreground:#d7d7ff
 URxvt*background:#2d2d2d
 URxvt*saveLines:10000
-! URxvt*font:xft:inconsolata-g:pixelsize=11
 URxvt*font:xft:liberation mono:pixelsize=11
+!URxvt*font:xft:dotsies:pixelsize=11,xft:liberation mono:pixelsize=11
 URxvt*scrollBar:False
 ! URxvt*scrollBar_right:true
 ! URxvt*scrollstyle:plain
@@ -43,6 +42,5 @@ URxvt.tabbed.tabbar-fg:15
 URxvt.tabbed.tabbar-bg:8
 URxvt.tabbed.tab-fg:11
 URxvt.tabbed.tab-bg:8
-! URxvt*letterSpace:-3
 
 Xcursor.theme: GT3-small

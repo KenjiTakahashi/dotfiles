@@ -8,15 +8,15 @@ from libqtile import layout, bar, widget
 modkey = "mod4"
 mf = 'liberation mono'
 bg = '#2d2d2d'
-#fg = '#5faf5f' #green
-#fg = '#5fafff' #blue
-#fg = '#7e3560' #purple
-fg = '#ffffff' #white
+#fg = '#5faf5f'  # green
+#fg = '#5fafff'  # blue
+#fg = '#7e3560'  # purple
+fg = '#ffffff'  # white
 
 keys = [
     Key([modkey], "p", lazy.spawn(
         "dmenu_run -b -i -fn '{font}' -nb '{color}' -sb '{color}'".format(
-            font = mf, color = bg
+            font=mf, color=bg
         ))
     ),
     Key([modkey], "c", lazy.spawn("copyq toggle")),
@@ -171,7 +171,8 @@ screens = [
     )
 ]
 
+
 @hook.subscribe.client_managed
 def opacity(window):
-    if not window.match(wname = "mplayer2") and not window.match(wmclass = "vlc"):
+    if not window.match(wname="mplayer2") and not window.match(wmclass="vlc"):
         window.opacity = .85
