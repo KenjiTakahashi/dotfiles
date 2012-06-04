@@ -33,12 +33,14 @@ source /etc/profile
 export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
 export GEM_HOME=$HOME/.gem/ruby/1.9.1
 export EDITOR="vim"
-unalias gst # it conflicts with GNU Smalltalk
 alias gcam='gc -am'
 alias gf='g fetch'
 alias gd='g diff'
 alias tdc='clear && todo -c +'
 alias tdd='todo -d '
+tda() {
+    todo -g $1 -a
+}
 alias tn='tmux'
 alias ta='tmux a'
 alias tl='tmux list-sessions'
@@ -60,3 +62,9 @@ plo() {
     pdflatex $1.tex && zathura $1.pdf
 }
 alias p2="python2"
+alias p3="python3"
+alias upk='atool -x'
+alias pk='atool -a'
+prepend() {
+    for i in *; do mv $i $1$i; done
+}
