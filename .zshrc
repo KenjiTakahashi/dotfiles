@@ -55,14 +55,17 @@ sm() {
     cuebreakpoints *cue | shnsplit -t "%p_-_%a_-_%n_-_%t" -o flac *$1
 }
 alias :D='archey -s'
-alias mt='udisks --mount'
-alias umt='udisks --unmount'
-alias umta='udiskie-umount -a'
+alias mt="udevil mount"
+alias umt="udevil umount"
+alias umta="devmon -u"
 plo() {
     pdflatex $1.tex && zathura $1.pdf
 }
 alias p2="python2"
 alias p3="python3"
+alias ip2="ipython2"
+alias ip3="ipython"
+alias nt="nosetests3"
 alias upk='atool -x'
 alias pk='atool -a'
 prepend() {
