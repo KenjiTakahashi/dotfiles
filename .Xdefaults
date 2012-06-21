@@ -10,7 +10,7 @@
 
 ! to change main col: 2, 11
 
-URxvt*color8:#2d2d2d
+URxvt*color8:#ffffff
 URxvt*color9:#ff8787
 URxvt*color10:#5faf5f
 URxvt*color11:#d866ac
