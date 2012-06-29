@@ -1,6 +1,6 @@
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Dec 17
-"
+" Karol 'Kenji Takahashi' Wozniak © 2012 
+" Last change:	2012 Jun 30
+
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
@@ -9,15 +9,29 @@ endif
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+filetype off
+"
+" vundle
+" Added (almost) on top, so vim can properly see color schemes
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
 
-let $EX_DEV='~/.toolkit'
-let g:ex_toolkit_path = '~/.toolkit'
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+Bundle "gmarik/vundle"
+Bundle 'Command-T'
+Bundle 'lettuce.vim'
+Bundle 'Syntastic'
+Bundle 'The-NERD-Commenter'
+Bundle 'The-NERD-tree'
+Bundle 'surround.vim'
+Bundle 'easytags.vim'
+Bundle 'vim-coffee-script'
+Bundle 'Markdown'
 
 set t_Co=256
-
 colors lettuce
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
@@ -29,20 +43,12 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-"if has('mouse')
-"  set mouse=a
-"endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -92,6 +98,7 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -102,7 +109,9 @@ let g:Tb_MapWindowNavVim=1
 let g:Tb_MapWindowNavArrows=1
 let mapleader = ","
 
+" no blink, even in GUI
 set guicursor=a:blinkon0
+
 set number
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
@@ -116,17 +125,9 @@ let g:NERDTreeAutoCenter = 0
 let g:NERDTreeHighlightCursorLine = 0
 nmap <F11> :NERDTreeToggle<bar>wincmd p<CR>
 
-"tagbar
-let g:tagbar_left = 1
-nmap <F12> :TagbarToggle<CR>
-
 "different
 noremap ml :wincmd h<CR>
 noremap mr :wincmd l<CR>
-
-"autocmd VimEnter * nested TagbarOpen
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd l
 
 "buffers
 noremap gt :bnext<CR>
@@ -136,6 +137,8 @@ noremap gc :bn<bar>bd # <CR>
 "Command-T
 nmap <silent> mf :CommandT<CR>
 nmap <silent> mb :CommandTBuffer<CR>
+let g:CommandTCancelMap=['<ESC>','<C-c>']
+set wildignore+=*~
 
 "insert coding to python/ruby files
 au BufNewFile *.py put! ='# -*- coding: utf-8 -*-'

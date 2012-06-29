@@ -67,6 +67,7 @@ alias ip2="ipython2"
 alias ip3="ipython"
 alias nt="nosetests3"
 alias upk='atool -x'
+alias upt='atool -X'
 alias pk='atool -a'
 prepend() {
     for i in *; do mv $i $1$i; done
