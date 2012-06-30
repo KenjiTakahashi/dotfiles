@@ -113,9 +113,6 @@ let mapleader = ","
 set guicursor=a:blinkon0
 
 set number
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
-set cursorline cursorcolumn
 set pastetoggle=<F2>
 
 "NERDTree
