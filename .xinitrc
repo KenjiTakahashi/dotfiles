@@ -8,7 +8,6 @@ urxvtd -q -o -f
 transmission-daemon
 #pyLoadCore &
 dropboxd &
-SpiderOak --headless &
 eval `cat $HOME/.fehbg` &
 devmon &
 redshift -l 51.12493:17.05357 -m vidmode &

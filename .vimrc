@@ -26,6 +26,7 @@ Bundle 'surround.vim'
 Bundle 'easytags.vim'
 Bundle 'vim-coffee-script'
 Bundle 'Markdown'
+Bundle 'UltiSnips'
 
 set t_Co=256
 colors lettuce

@@ -37,9 +37,12 @@ alias gcam='gc -am'
 alias gf='g fetch'
 alias gd='g diff'
 alias tdc='clear && todo -c +'
-alias tdd='todo -d '
 tda() {
-    todo -g $1 -a
+    if (($+1)) then
+        todo -g $1 -a
+    else
+        todo -a
+    fi
 }
 alias tn='tmux'
 alias ta='tmux a'
@@ -69,6 +72,20 @@ alias nt="nosetests3"
 alias upk='atool -x'
 alias upt='atool -X'
 alias pk='atool -a'
+
 prepend() {
     for i in *; do mv $i $1$i; done
+}
+
+alias matte="convert -background white +matte"
+pc() {
+    rm *.jpg
+    rm *.gif
+    i=0
+    for n in `ls *.pdf`
+    do
+        matte $n "$i.png"
+        i=$(($i+1))
+    done
+    rm *.pdf
 }
