@@ -10,7 +10,7 @@
 
 ! to change main col: 2, 11
 
-URxvt*color8:#ffffff
+URxvt*color8:#585858
 URxvt*color9:#ff8787
 URxvt*color10:#5faf5f
 URxvt*color11:#d866ac
@@ -33,14 +33,8 @@ URxvt*saveLines:10000
 URxvt*font:xft:liberation mono:pixelsize=11
 !URxvt*font:xft:dotsies:pixelsize=11,xft:liberation mono:pixelsize=11
 URxvt*scrollBar:False
-! URxvt*scrollBar_right:true
-! URxvt*scrollstyle:plain
 URxvt.perl-ext-common:default,matcher
 URxvt.urlLauncher:/usr/bin/firefox
 URxvt.matcher.button:1
-URxvt.tabbed.tabbar-fg:15
-URxvt.tabbed.tabbar-bg:8
-URxvt.tabbed.tab-fg:11
-URxvt.tabbed.tab-bg:8
 
 Xcursor.theme: GT3-small
