@@ -28,6 +28,8 @@ Bundle 'vim-coffee-script'
 Bundle 'Markdown'
 Bundle 'UltiSnips'
 Bundle 'Gist.vim'
+Bundle 'jade.vim'
+Bundle 'vim-stylus'
 
 set t_Co=256
 colors lettuce
@@ -106,6 +108,8 @@ set shiftwidth=4
 set softtabstop=4
 set completeopt=menu,preview
 set expandtab
+autocmd FileType jade set sw=4
+autocmd FileType stylus set sw=4
 
 let g:Tb_MapWindowNavVim=1
 let g:Tb_MapWindowNavArrows=1
@@ -138,6 +142,7 @@ nmap <silent> mf :CommandT<CR>
 nmap <silent> mb :CommandTBuffer<CR>
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 set wildignore+=*~
+set wildignore+=node_modules
 
 "insert coding to python/ruby files
 au BufNewFile *.py put! ='# -*- coding: utf-8 -*-'
