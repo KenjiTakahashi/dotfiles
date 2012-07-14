@@ -61,13 +61,15 @@ for i in groups:
 layouts = [
     layout.MonadTall(border_width=0),
     layout.Max(),
-    layout.Floating(border_width=0, auto_float_types=['notification', 'splash'])
+    layout.Floating(
+        border_width=0, auto_float_types=['notification', 'splash']
+    )
 ]
 
 floating_layout = layout.Floating(
-    border_width = 0,
-    max_border_width = 0,
-    fullscreen_border_width = 0
+    border_width=0,
+    max_border_width=0,
+    fullscreen_border_width=0
 )
 
 graphs_settings = {
@@ -88,91 +90,60 @@ some_defaults = {
 
 screens = [
     Screen(
-        top = bar.Bar([
-            widget.CPUGraph(
-                **graphs_settings
-            ),
-            widget.MemoryGraph(
-                type = 'box',
-                **graphs_settings
-            ),
-            widget.SwapGraph(
-                type = 'box',
-                **graphs_settings
-            ),
+        top=bar.Bar([
+            widget.CPUGraph(**graphs_settings),
+            widget.MemoryGraph(type='box', **graphs_settings),
+            widget.SwapGraph(type='box', **graphs_settings),
+            widget.NetGraph(interface='wlan0', **graphs_settings),
             widget.NetGraph(
-                interface = 'wlan0',
+                interface='wlan0',
+                bandwidth_type='up',
                 **graphs_settings
             ),
-            widget.NetGraph(
-                interface = 'wlan0',
-                bandwidth_type = 'up',
-                **graphs_settings
-            ),
-            widget.HDDGraph(
-                path = '/',
-                width = 20,
-                **graphs_settings
-            ),
-            widget.HDDGraph(
-                path = '/home',
-                width = 20,
-                **graphs_settings
-            ),
-            widget.HDDGraph(
-                path = '/mnt/music',
-                width = 20,
-                **graphs_settings
-            ),
+            widget.HDDGraph(path='/', width=20, **graphs_settings),
+            widget.HDDGraph(path='/home', width=20, **graphs_settings),
+            widget.HDDGraph(path='/mnt/music', width=20, **graphs_settings),
             widget.Mpris(
-                name = "gayeogi",
-                objname = "org.mpris.gayeogi",
-                width = bar.STRETCH,
+                name="gayeogi",
+                objname="org.mpris.gayeogi",
+                width=bar.STRETCH,
                 **some_defaults
             ),
-            widget.Canto(
-                update_delay = 1800,
-                **some_defaults
-            ),
+            widget.Canto(update_delay=1800, **some_defaults),
             widget.YahooWeather(
-                update_interval = 1800,
-                woeid = '526363',
-                format = '{condition_temp}°{units_temperature}',
+                update_interval=1800,
+                woeid='526363',
+                format='{condition_temp}°{units_temperature}',
                 **some_defaults
             )
-        ], 16, opacity = .85, background = bg),
-        bottom = bar.Bar([
+        ], 16, opacity=.85, background=bg),
+        bottom=bar.Bar([
             widget.GroupBox(
-                borderwidth = 0,
-                margin_x = 0,
-                margin_y = 0,
-                padding = 2,
-                highlight_method = 'block',
-                rounded = False,
-                inactive = '000000',
-                this_screen_border = fg,
-                this_current_screen_border = fg,
+                borderwidth=0,
+                margin_x=0,
+                margin_y=0,
+                padding=2,
+                highlight_method='block',
+                rounded=False,
+                inactive='000000',
+                this_screen_border=fg,
+                this_current_screen_border=fg,
                 **some_defaults
             ),
-            widget.CurrentLayout(
-                **some_defaults
-            ),
-            widget.WindowName(
-                **some_defaults
-            ),
-            widget.BatteryIcon(
-                **some_defaults
-            ),
-            widget.Clock(
-                fmt = '%a %b %d %H:%M:%S %Z %Y',
-                **some_defaults
-            )
-        ], 16, opacity = .85, background = bg)
+            widget.CurrentLayout(**some_defaults),
+            widget.WindowName(**some_defaults),
+            widget.BatteryIcon(**some_defaults),
+            widget.Clock(fmt='%a %b %d %H:%M:%S %Z %Y', **some_defaults)
+        ], 16, opacity=.85, background=bg)
     )
 ]
 
 
 @hook.subscribe.client_managed
 def opacity(window):
-    if not window.match(wname="mplayer2") and not window.match(wmclass="vlc"):
+    if(
+        not window.match(wmclass="mplayer2") and
+        not window.match(wmclass="vlc") and
+        not window.match(wmclass="gimp")
+    ):
         window.opacity = .85
