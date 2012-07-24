@@ -30,6 +30,7 @@ Bundle 'UltiSnips'
 Bundle 'Gist.vim'
 Bundle 'jade.vim'
 Bundle 'vim-stylus'
+Bundle 'EasyDigraph.vim'
 
 set t_Co=256
 colors lettuce
@@ -148,10 +149,6 @@ set wildignore+=node_modules
 au BufNewFile *.py put! ='# -*- coding: utf-8 -*-'
 au BufNewFile *.rb put! ='# coding: utf-8'
 
-"highlight chars in > 80 column
-highlight OverLength ctermbg=58 ctermfg=255
-match OverLength '\%81v'
-
 "adding timestamp
 nnoremap ts "=strftime("%d %B %Y, %R")<CR>P
 
@@ -159,3 +156,5 @@ map <F1> <Esc>
 imap <F1> <Esc>
 
 let g:syntastic_enabled_balloons = 0
+
+let g:EasyDigraph_imap = '<C-b>'
