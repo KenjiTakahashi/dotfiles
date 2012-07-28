@@ -17,7 +17,7 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 Bundle "gmarik/vundle"
-Bundle 'Command-T'
+Bundle 'wincent/Command-T'
 Bundle 'lettuce.vim'
 Bundle 'Syntastic'
 Bundle 'The-NERD-Commenter'
