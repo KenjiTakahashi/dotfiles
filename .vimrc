@@ -141,9 +141,11 @@ noremap gc :bn<bar>bd # <CR>
 "Command-T
 nmap <silent> mf :CommandT<CR>
 nmap <silent> mb :CommandTBuffer<CR>
+nmap <silent> mt :CommandTTag<CR>
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 set wildignore+=*~
 set wildignore+=node_modules
+set wildignore+=build
 
 "insert coding to python/ruby files
 au BufNewFile *.py put! ='# -*- coding: utf-8 -*-'

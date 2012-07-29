@@ -6,6 +6,7 @@ from libqtile.command import lazy
 from libqtile import layout, bar, widget
 
 modkey = "mod4"
+dmf = '-*-liberation mono-medium-r-*-*-11-*-*-*-*-*-*-*'
 mf = 'liberation mono'
 bg = '#2d2d2d'
 #fg = '#5faf5f'  # green
@@ -16,7 +17,7 @@ fg = '#ffffff'  # white
 keys = [
     Key([modkey], "p", lazy.spawn(
         "dmenu_run -b -i -fn '{font}' -nb '{color}' -sb '{color}'".format(
-            font=mf, color=bg
+            font=dmf, color=bg
         ))
     ),
     Key([modkey], "c", lazy.spawn("copyq toggle")),
