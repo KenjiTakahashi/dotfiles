@@ -105,6 +105,8 @@ if !exists(":DiffOrig")
 endif
 
 set encoding=utf-8
+set timeoutlen=0
+
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -172,4 +174,6 @@ let g:Powerline_mode_cv='v⋅b'
 let g:Powerline_mode_s='s'
 let g:Powerline_mode_S='s⋅l'
 let g:Powerline_mode_cs='s⋅b'
+let g:Powerline_theme='kenji'
 let g:Powerline_stl_path_style='relative'
+let g:Powerline_symbols_override={'LINE': ''}
