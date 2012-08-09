@@ -1,5 +1,4 @@
 " Karol 'Kenji Takahashi' Wozniak © 2012 
-" Last change:	2012 Jun 30
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -26,11 +25,12 @@ Bundle 'surround.vim'
 Bundle 'easytags.vim'
 Bundle 'vim-coffee-script'
 Bundle 'tpope/vim-markdown'
-Bundle 'UltiSnips'
+Bundle 'SirVer/ultisnips'
 Bundle 'Gist.vim'
 Bundle 'jade.vim'
 Bundle 'vim-stylus'
 Bundle 'EasyDigraph.vim'
+Bundle 'Lokaltog/vim-powerline'
 
 set t_Co=256
 colors lettuce
@@ -104,6 +104,7 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+set encoding=utf-8
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -157,6 +158,18 @@ nnoremap ts "=strftime("%d %B %Y, %R")<CR>P
 map <F1> <Esc>
 imap <F1> <Esc>
 
-let g:syntastic_enabled_balloons = 0
+let g:syntastic_enabled_balloons=0
 
-let g:EasyDigraph_imap = '<C-b>'
+let g:EasyDigraph_imap='<C-b>'
+
+set laststatus=2
+let g:Powerline_mode_n='n'
+let g:Powerline_mode_i='i'
+let g:Powerline_mode_R='r'
+let g:Powerline_mode_v='v'
+let g:Powerline_mode_V='v⋅l'
+let g:Powerline_mode_cv='v⋅b'
+let g:Powerline_mode_s='s'
+let g:Powerline_mode_S='s⋅l'
+let g:Powerline_mode_cs='s⋅b'
+let g:Powerline_stl_path_style='relative'
