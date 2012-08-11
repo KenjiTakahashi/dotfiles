@@ -16,7 +16,7 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 Bundle "gmarik/vundle"
-Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
 Bundle 'lettuce.vim'
 Bundle 'Syntastic'
 Bundle 'The-NERD-Commenter'
@@ -31,6 +31,8 @@ Bundle 'jade.vim'
 Bundle 'vim-stylus'
 Bundle 'EasyDigraph.vim'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'b4winckler/vim-objc'
+Bundle 'tpope/vim-fugitive'
 
 set t_Co=256
 colors lettuce
@@ -105,7 +107,6 @@ if !exists(":DiffOrig")
 endif
 
 set encoding=utf-8
-set timeoutlen=0
 
 set tabstop=4
 set shiftwidth=4
@@ -132,23 +133,25 @@ let g:NERDTreeAutoCenter = 0
 let g:NERDTreeHighlightCursorLine = 0
 nmap <F11> :NERDTreeToggle<bar>wincmd p<CR>
 
-"different
-noremap ml :wincmd h<CR>
-noremap mr :wincmd l<CR>
-
 "buffers
 noremap gt :bnext<CR>
 noremap gT :bprev<CR>
 noremap gc :bn<bar>bd # <CR>
 
-"Command-T
-nmap <silent> mf :CommandT<CR>
-nmap <silent> mb :CommandTBuffer<CR>
-nmap <silent> mt :CommandTTag<CR>
-let g:CommandTCancelMap=['<ESC>','<C-c>']
+"CtrlP
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_max_height=20
+let g:ctrlp_dotfiles=0
+let g:ctrlp_switch_buffer=0
+let g:ctrlp_extensions=['buffertag']
+let g:ctrlp_map='mf'
+nmap <silent> mb :CtrlPBuffer<CR>
+nmap <silent> mt :CtrlPBufTagAll<CR>
+nmap <silent> mr :CtrlPMRU<CR>
 set wildignore+=*~
 set wildignore+=node_modules
 set wildignore+=build
+set wildignore+=dist
 
 "insert coding to python/ruby files
 au BufNewFile *.py put! ='# -*- coding: utf-8 -*-'
