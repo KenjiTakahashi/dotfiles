@@ -115,6 +115,7 @@ set completeopt=menu,preview
 set expandtab
 autocmd FileType jade set sw=4
 autocmd FileType stylus set sw=4
+autocmd BufNewFile,BufRead *.m set filetype=objc
 
 let g:Tb_MapWindowNavVim=1
 let g:Tb_MapWindowNavArrows=1
