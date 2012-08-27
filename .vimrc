@@ -18,6 +18,7 @@ call vundle#rc()
 Bundle "gmarik/vundle"
 Bundle 'kien/ctrlp.vim'
 Bundle 'lettuce.vim'
+Bundle 'w0ng/vim-hybrid'
 Bundle 'Syntastic'
 Bundle 'The-NERD-Commenter'
 Bundle 'The-NERD-tree'
@@ -35,7 +36,8 @@ Bundle 'b4winckler/vim-objc'
 Bundle 'tpope/vim-fugitive'
 
 set t_Co=256
-colors lettuce
+let g:hybrid_use_Xresources=1
+colorscheme hybrid
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -153,6 +155,7 @@ set wildignore+=*~
 set wildignore+=node_modules
 set wildignore+=build
 set wildignore+=dist
+set wildignore+=*.o
 
 "insert coding to python/ruby files
 au BufNewFile *.py put! ='# -*- coding: utf-8 -*-'
