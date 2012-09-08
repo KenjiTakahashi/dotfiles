@@ -34,6 +34,8 @@ Bundle 'EasyDigraph.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'b4winckler/vim-objc'
 Bundle 'tpope/vim-fugitive'
+Bundle 'YankRing.vim'
+Bundle 'sjl/gundo.vim'
 
 set t_Co=256
 let g:hybrid_use_Xresources=1
@@ -156,6 +158,14 @@ set wildignore+=node_modules
 set wildignore+=build
 set wildignore+=dist
 set wildignore+=*.o
+
+"YankRing
+let g:yankring_window_height=20
+let g:yankring_history_file='.yankring_history'
+noremap <silent> yr :YRShow<CR>
+
+"gundo
+nnoremap go :GundoToggle<CR>
 
 "insert coding to python/ruby files
 au BufNewFile *.py put! ='# -*- coding: utf-8 -*-'
