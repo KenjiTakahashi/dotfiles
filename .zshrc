@@ -64,6 +64,9 @@ alias umta="devmon -u"
 plo() {
     pdflatex $1.tex && zathura $1.pdf
 }
+xlo() {
+    xelatex $1.tex && zathura $1.pdf
+}
 alias p2="python2"
 alias p3="python3"
 alias ip2="ipython2"
