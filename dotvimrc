@@ -36,6 +36,7 @@ Bundle 'b4winckler/vim-objc'
 Bundle 'tpope/vim-fugitive'
 Bundle 'YankRing.vim'
 Bundle 'sjl/gundo.vim'
+Bundle 'godlygeek/tabular'
 
 set t_Co=256
 let g:hybrid_use_Xresources=1
@@ -119,6 +120,7 @@ set completeopt=menu,preview
 set expandtab
 autocmd FileType jade set sw=4
 autocmd FileType stylus set sw=4
+autocmd FileType yaml set sw=2 ts=2 sts=2
 autocmd BufNewFile,BufRead *.m set filetype=objc
 
 let g:Tb_MapWindowNavVim=1

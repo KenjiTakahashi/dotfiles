@@ -1,0 +1,23 @@
+window:
+  border_width: 0
+bar:
+  font: ["liberation mono", 11]
+  height: 16
+  text_padding: [0, 2, 5, 2]
+  box_padding: [0, 0, 0, 0]
+  icon_spacing: 0
+  background: 0x313131
+  text_color: 0x8e8e8e
+  dim_color: 0x000000
+  graph_color: 0x1e98c0
+  graph_fill_color: 0x1e98c0
+  active_border: 0x1e98c0
+  separator_width: 0
+menu:
+  font: ["liberation mono", 11]
+  line_height: 16
+  background: 0x313131
+  text: 0x8e8e8e
+  highlight: 0x1e98c0
+  selection: 0x1e98c0
+  selection_text: 0x8e8e8e
