@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from tilenol.layout.tile import Stack, Split
+from tilenol.layout.tile import Stack, Split, TileStack
 
 
 class Tile50(Split):
@@ -10,5 +10,5 @@ class Tile50(Split):
         priority = 0
         limit = 1
 
-    class Right(Stack):
+    class Right(TileStack):
         pass
