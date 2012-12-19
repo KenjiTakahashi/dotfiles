@@ -1,14 +1,14 @@
 groups:
-  - 1: Tile
-  - 2: Tile
-  - 3: Tile
-  - e: Tile
-  - r: Tile
-  - t: Tile
-  - y: Tile
-  - u: Tile
-  - i: Tile
-  - o: Tile 
+  - 1: Tile50
+  - 2: Tile50
+  - 3: Tile50
+  - e: Tile50
+  - r: Tile50
+  - t: Tile50
+  - y: Tile50
+  - u: Tile50
+  - i: Tile50
+  - o: Tile50
 
 extra_layouts:
   - Max

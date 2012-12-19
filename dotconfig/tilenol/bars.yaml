@@ -31,7 +31,10 @@
       path: /mnt/music
       samples: 20
       position: top
-
+  right:
+  - YahooWeather:
+      location: Wroclaw
+      picture_url: null
 - screen: 0
   position: bottom
   left:

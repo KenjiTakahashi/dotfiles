@@ -69,13 +69,12 @@
 <W-d>: group focus_prev
 <WS-c>: window close
 <WSC-c>: window kill
-#<W-t>: window make_tiled
+<WC-t>: window make_tiled
 <WC-q>: tilenol restart
 #<W-w>: screen.0 focus
 #<W-e>: screen.1 focus
 #<W-r>: screen.2 focus
 <W-b>: screen toggle_bars
-#<WS-b>: window toggle_border
 
 # Multimedia Keys
 #<XF86AudioMute>: env exec amixer sset Master toggle
