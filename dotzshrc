@@ -36,16 +36,15 @@ export EDITOR="vim"
 alias gcam='gc -am'
 alias gf='g fetch'
 alias gd='g diff'
-alias tdc='clear && todo -c +'
-tda() {
+alias tdc='clear && td'
+alias tn='tmux'
+ta() {
     if (($+1)) then
-        todo -g $1 -a
+        tmux a -t $1
     else
-        todo -a
+        tmux a
     fi
 }
-alias tn='tmux'
-alias ta='tmux a'
 alias tl='tmux list-sessions'
 alias tk='tmux kill-session -t'
 alias tre='transmission-remote-cli'
@@ -93,3 +92,5 @@ pc() {
     done
     rm *.pdf
 }
+
+unalias pacmir
