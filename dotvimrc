@@ -1,4 +1,4 @@
-" Karol 'Kenji Takahashi' Wozniak © 2012 
+" Karol 'Kenji Takahashi' Woźniak © 2012 - 2013
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -27,7 +27,8 @@ Bundle 'easytags.vim'
 Bundle 'vim-coffee-script'
 Bundle 'tpope/vim-markdown'
 Bundle 'SirVer/ultisnips'
-Bundle 'Gist.vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
 Bundle 'jade.vim'
 Bundle 'vim-stylus'
 Bundle 'EasyDigraph.vim'
@@ -37,6 +38,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'YankRing.vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'godlygeek/tabular'
+Bundle 'Valloric/YouCompleteMe'
 
 set t_Co=256
 let g:hybrid_use_Xresources=1
@@ -181,6 +183,12 @@ imap <F1> <Esc>
 
 let g:syntastic_enabled_balloons=0
 
+"pyflakes for python2
+au BufRead *.py if getline("$") == "#2" | let g:syntastic_python_checker='flake8-python2' | endif
+
+"objcpp=>objc
+au FileType objcpp set ft=objc
+
 let g:EasyDigraph_imap='<C-b>'
 
 set laststatus=2
@@ -196,3 +204,8 @@ let g:Powerline_mode_cs='s⋅b'
 let g:Powerline_theme='kenji'
 let g:Powerline_stl_path_style='relative'
 let g:Powerline_symbols_override={'LINE': ''}
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+
+let g:ycm_allow_changing_updatetime=0
+let g:ycm_autoclose_preview_window_after_completion=1
