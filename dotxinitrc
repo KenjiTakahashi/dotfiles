@@ -1,5 +1,4 @@
 [[ -f $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
-xcompmgr &
 copyq &
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 xsetroot -cursor_name left_ptr
@@ -11,6 +10,6 @@ devmon &
 redshift -l 51.12493:17.05357 -m vidmode &
 canto-daemon &
 start-pulseaudio-x11
-bash $HOME/.config/wmfs/bottomstatus.sh &
+python $HOME/.config/wmfs/bottomstatus.py &
 python $HOME/.config/wmfs/topstatus.py &
 exec wmfs
