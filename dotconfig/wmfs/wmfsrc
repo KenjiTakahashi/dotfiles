@@ -1,0 +1,146 @@
+[themes]
+    [theme]
+        [fonts]
+            [font]
+                name = "liberation mono:pixelsize=11:spacing=mono"
+            [/font]
+            [font]
+                name = "liberation mono:pixelsize=11:spacing=mono:weight=bold"
+            [/font]
+        [/fonts]
+        # name = "default"
+        font = "liberation mono:pixelsize=11:spacing=mono"
+        # Bars
+        bars_width = 16
+        bars_fg = "#4d679a"
+        bars_bg = "#383a3b"
+        # Element tags
+        tags_normal_fg = "#252727"
+        tags_normal_bg = "#383a3b"
+        tags_sel_fg = "#8e8e8e"
+        tags_sel_bg = "#4d679a"
+        tags_occupied_fg = "#8e8e8e"
+        tags_occupied_bg = "#383a3b"
+        tags_urgent_fg = "#223322"
+        tags_urgent_bg = "#88002a"
+        tags_border_width = 0
+        # Frame / Client
+        client_titlebar_width = 0
+        client_border_width = 0
+    [/theme]
+[/themes]
+[bars]
+    [bar]
+        name = "top"
+        position = 0
+        screen = 0
+        elements = "s"
+        theme = "default"
+    [/bar]
+    [bar]
+        name = "bottom"
+        position = 1
+        screen = 0
+        elements = "tls"
+        theme = "default"
+    [/bar]
+[/bars]
+[tags]
+    # Tag wrapping navigation
+    circular = false
+    # Use no screen option or screen = -1 to set tag on each screen
+    #[tag]
+    #screen = -1
+    #name = "1"
+    ## statusline=""
+    #[/tag]
+    [tag] name = "1" [/tag]
+    [tag] name = "2" [/tag]
+    [tag] name = "3" [/tag]
+    [tag] name = "e" [/tag]
+    [tag] name = "r" [/tag]
+    [tag] name = "t" [/tag]
+    [tag] name = "y" [/tag]
+    [tag] name = "u" [/tag]
+    [tag] name = "i" [/tag]
+    [tag] name = "o" [/tag]
+    # Mousebinds associated to Tags element button
+    [mouse] button = "1" func = "tag_click" [/mouse]
+    [mouse] button = "4" func = "tag_next"  [/mouse]
+    [mouse] button = "5" func = "tag_prev"  [/mouse]
+[/tags]
+[client]
+    autofocus = true
+    theme = "default"
+    key_modifier = "Super"
+    focus = click
+    [mouse] button = "1" func = "client_focus_click"    [/mouse]
+    [mouse] button = "1" func = "mouse_swap"            [/mouse]
+    [mouse] button = "2" func = "mouse_tab"             [/mouse]
+    [mouse] button = "3" func = "mouse_resize"          [/mouse]
+    [mouse] button = "4" func = "client_focus_next_tab" [/mouse]
+    [mouse] button = "5" func = "client_focus_prev_tab" [/mouse]
+[/client]
+[launchers]
+    # command can be an uicb function or an uicb function + extension (see example)
+    [launcher]
+    name = "exec"
+    prompt = "run:"
+    # Example of uicb + ext:
+    #   command = "spawn xterm -e"
+    command = "spawn"
+    width = 150
+    [/launcher]
+[/launchers]
+[keys]
+    [key] mod = {"Super"} key = "Return" func = "spawn" cmd = "urxvtc" [/key]
+    [key] mod = {"Control", "Alt"} key = "q" func = "quit" [/key]
+    [key] mod = {"Control", "Alt"} key = "r" func = "reload" [/key]
+    [key] mod = {"Control", "Alt"} key = "l" func = "spawn" cmd = "slimlock" [/key]
+    [key] mod = {"Control", "Alt"} key = "f" func = "client_toggle_free" [/key]
+    [key] mod = {"Super"} key = "1" func = "tag_set" cmd = "0" [/key]
+    [key] mod = {"Super"} key = "2" func = "tag_set" cmd = "1" [/key]
+    [key] mod = {"Super"} key = "3" func = "tag_set" cmd = "2" [/key]
+    [key] mod = {"Super"} key = "e" func = "tag_set" cmd = "3" [/key]
+    [key] mod = {"Super"} key = "r" func = "tag_set" cmd = "4" [/key]
+    [key] mod = {"Super"} key = "t" func = "tag_set" cmd = "5" [/key]
+    [key] mod = {"Super"} key = "y" func = "tag_set" cmd = "6" [/key]
+    [key] mod = {"Super"} key = "u" func = "tag_set" cmd = "7" [/key]
+    [key] mod = {"Super"} key = "i" func = "tag_set" cmd = "8" [/key]
+    [key] mod = {"Super"} key = "o" func = "tag_set" cmd = "9" [/key]
+    [key] mod = {"Super", "Shift"} key = "1" func = "tag_client" cmd = "0" [/key]
+    [key] mod = {"Super", "Shift"} key = "2" func = "tag_client" cmd = "1" [/key]
+    [key] mod = {"Super", "Shift"} key = "3" func = "tag_client" cmd = "2" [/key]
+    [key] mod = {"Super", "Shift"} key = "e" func = "tag_client" cmd = "3" [/key]
+    [key] mod = {"Super", "Shift"} key = "r" func = "tag_client" cmd = "4" [/key]
+    [key] mod = {"Super", "Shift"} key = "t" func = "tag_client" cmd = "5" [/key]
+    [key] mod = {"Super", "Shift"} key = "y" func = "tag_client" cmd = "6" [/key]
+    [key] mod = {"Super", "Shift"} key = "u" func = "tag_client" cmd = "7" [/key]
+    [key] mod = {"Super", "Shift"} key = "i" func = "tag_client" cmd = "8" [/key]
+    [key] mod = {"Super", "Shift"} key = "o" func = "tag_client" cmd = "9" [/key]
+    [key] mod = {"Super", "Shift"} key = "c" func = "client_close" [/key]
+    [key] mod = {"Super"} key = "j" func = "client_focus_next" [/key]
+    [key] mod = {"Super"} key = "k" func = "client_focus_prev" [/key]
+    [key] mod = {"Super"} key = "Tab" func = "client_focus_next_tab" [/key]
+    [key] mod = {"Super", "Shift"} key = "Tab" func = "client_focus_prev_tab" [/key]
+    [key] mod = {"Super"} key = "a" func = "client_focus_left"   [/key]
+    [key] mod = {"Super"} key = "d" func = "client_focus_right"  [/key]
+    [key] mod = {"Super"} key = "w" func = "client_focus_top"    [/key]
+    [key] mod = {"Super"} key = "s" func = "client_focus_bottom" [/key]
+    [key] mod = {"Super", "Shift"} key = "h" func = "client_swap_left"   [/key]
+    [key] mod = {"Super", "Shift"} key = "l" func = "client_swap_right"  [/key]
+    [key] mod = {"Super", "Shift"} key = "k" func = "client_swap_top"    [/key]
+    [key] mod = {"Super", "Shift"} key = "j" func = "client_swap_bottom" [/key]
+    [key] mod = {"Super"} key = "h" func = "client_resize_left" cmd = "20" [/key]
+    [key] mod = {"Super"} key = "l" func = "client_resize_left" cmd = "-20" [/key]
+    [key] mod = {"Super"} key = "k" func = "client_resize_top" cmd = "20" [/key]
+    [key] mod = {"Super"} key = "j" func = "client_resize_top" cmd = "-20" [/key]
+    [key] mod = {"Super", "Control"} key = "h" func = "client_resize_right"  cmd = "-20" [/key]
+    [key] mod = {"Super", "Control"} key = "l" func = "client_resize_right"  cmd = "20" [/key]
+    [key] mod = {"Super", "Control"} key = "k" func = "client_resize_bottom" cmd = "-20" [/key]
+    [key] mod = {"Super", "Control"} key = "j" func = "client_resize_bottom" cmd = "20" [/key]
+    [key] mod = {"Super"} key = "m" func = "layout_vmirror" [/key]
+    [key] mod = {"Super", "Shift"} key = "m" func = "layout_hmirror" [/key]
+    [key] mod = {"Super"} key = "f" func = "client_focus_click" [/key]
+    [key] mod = {"Super"} key = "p" func = "spawn" cmd = "dmenu_run -b -i -fn '-*-liberation mono-medium-r-*-*-11-*-*-*-*-*-*-*' -nb '#313131' -sb '#313131'" [/key]
+[/keys]
