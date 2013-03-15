@@ -50,6 +50,7 @@ class Mixer(object):
             valb = valb[1::]
         for v1, v2 in zip(valb[::2], valb[1::2]):
             y, h = 0, 16
+            c = val < 0 and self.urg or self.fg1
             if v2 == "0":
                 if v1 == "0":
                     c = self.bg
