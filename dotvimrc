@@ -9,7 +9,7 @@ endif
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 filetype off
-"
+
 " vundle
 " Added (almost) on top, so vim can properly see color schemes
 set rtp+=~/.vim/bundle/vundle
@@ -19,7 +19,7 @@ Bundle "gmarik/vundle"
 Bundle 'kien/ctrlp.vim'
 Bundle 'lettuce.vim'
 Bundle 'w0ng/vim-hybrid'
-Bundle 'Syntastic'
+Bundle 'scrooloose/syntastic'
 Bundle 'The-NERD-Commenter'
 Bundle 'The-NERD-tree'
 Bundle 'surround.vim'
@@ -39,6 +39,7 @@ Bundle 'YankRing.vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'airblade/vim-gitgutter'
 
 set t_Co=256
 let g:hybrid_use_Xresources=1
@@ -184,7 +185,7 @@ imap <F1> <Esc>
 let g:syntastic_enabled_balloons=0
 
 "pyflakes for python2
-au BufRead *.py if getline("$") == "#2" | let g:syntastic_python_checker='flake8-python2' | endif
+au BufRead *.py if getline("$") == "#2" | let g:syntastic_python_flake8_exe='flake8-python2' | endif
 
 "objcpp=>objc
 au FileType objcpp set ft=objc
