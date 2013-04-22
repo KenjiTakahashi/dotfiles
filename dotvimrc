@@ -23,15 +23,14 @@ Bundle 'scrooloose/syntastic'
 Bundle 'The-NERD-Commenter'
 Bundle 'The-NERD-tree'
 Bundle 'surround.vim'
-Bundle 'easytags.vim'
-Bundle 'vim-coffee-script'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-markdown'
 Bundle 'SirVer/ultisnips'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
-Bundle 'jade.vim'
-Bundle 'vim-stylus'
-Bundle 'EasyDigraph.vim'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'wavded/vim-stylus'
+Bundle 'Rykka/easydigraph.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'b4winckler/vim-objc'
 Bundle 'tpope/vim-fugitive'
@@ -40,6 +39,8 @@ Bundle 'sjl/gundo.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'xolox/vim-easytags'
+Bundle 'Lokaltog/vim-easymotion'
 
 set t_Co=256
 let g:hybrid_use_Xresources=1
@@ -210,3 +211,5 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 
 let g:ycm_allow_changing_updatetime=0
 let g:ycm_autoclose_preview_window_after_completion=1
+
+let g:easytags_dynamic_files=1
