@@ -74,7 +74,10 @@ class Dang(Mixer):
             uri = "{}{}".format(WEATHER_URL, urlencode({'w': woeid, 'u': 'c'}))
             try:
                 x = urlopen(uri).read().decode('utf8')
-            except Exception:
+            except Exception as e:
+                import traceback
+                with open('/home/kenji/.cache/wmfs/log_top', 'a') as f:
+                    traceback.print_exc(file=f)
                 return ""
             e = ET.fromstring(x).find('.//{{{}}}condition'.format(WEATHER_NS))
             data = int(e.attrib['temp'])

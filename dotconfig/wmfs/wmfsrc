@@ -12,7 +12,7 @@
         font = "liberation mono:pixelsize=11:spacing=mono"
         # Bars
         bars_width = 16
-        bars_fg = "#4d679a"
+        bars_fg = "#8e8e8e"
         bars_bg = "#383a3b"
         # Element tags
         tags_normal_fg = "#252727"
@@ -41,7 +41,7 @@
         name = "bottom"
         position = 1
         screen = 0
-        elements = "tls"
+        elements = "tcs"
         theme = "default"
     [/bar]
 [/bars]

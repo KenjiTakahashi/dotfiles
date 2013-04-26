@@ -11,31 +11,6 @@ from common import Mixer
 
 
 class Dang(Mixer):
-    def active(self):
-        try:
-            wid = subprocess.check_output([
-                "xprop", "-root", "_NET_ACTIVE_WINDOW"
-            ])
-            wid = wid.decode('utf8').split('# ')
-            if len(wid) == 2:
-                wid = wid[-1][:-1]
-                ctag = subprocess.check_output([
-                    "xprop", "-root", "_WMFS_CURRENT_TAG"
-                ]).decode('utf8').split('= ')[-1][:-1]
-                vtag = subprocess.check_output([
-                    "xprop", "-id", wid, "_WMFS_TAG"
-                ]).decode('utf8').split('= ')[-1][:-1]
-                if ctag == vtag:
-                    data = subprocess.check_output([
-                        "xprop", "-id", wid, "_NET_WM_NAME"
-                    ]).decode('utf8').split('"')[-2]
-                    return "\s[left;#8e8e8e;{}]".format(
-                        data.replace(']', '\]')
-                    )
-        except subprocess.CalledProcessError:
-            return ""
-        return ""
-
     def battery(self):
         data = subprocess.check_output(["acpi", "-b"]).decode('utf8')
         data = re.split(': |, |\n', data)[1:-1]
@@ -68,8 +43,7 @@ class Dang(Mixer):
     def run(self):
         self.xloffset = 0
         self.xroffset = 1208
-        return "bottom {}{}{}".format(
-            self.active(),
+        return "bottom {}{}".format(
             self.datetime(),
             self.battery()
         )
@@ -85,4 +59,4 @@ while True:
             traceback.print_exc(file=f)
     else:
         subprocess.call(["wmfs", "-c", "status", result])
-    sleep(0.1)
+    sleep(1)
