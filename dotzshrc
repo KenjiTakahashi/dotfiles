@@ -31,6 +31,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 source /etc/profile
 export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
 export GEM_HOME=$HOME/.gem/ruby/1.9.1
 export EDITOR="vim"
 alias gcam='gc -am'
@@ -50,13 +51,15 @@ alias tk='tmux kill-session -t'
 alias tre='transmission-remote-cli'
 alias wcd='wicd-curses'
 alias ac='aria2c -c'
-alias rs='canto'
+alias rs='canto-curses'
 alias f='ranger'
 alias y='yaourt'
+alias burp='burp -C $HOME/.burpc -k'
 sm() {
     cuebreakpoints *cue | shnsplit -t "%p_-_%a_-_%n_-_%t" -o flac *$1
 }
-alias :D='archey -s'
+alias sf="screenfetch -D 'archlinux'"
+alias :D='sf -s'
 alias mt="udevil mount"
 alias umt="udevil umount"
 alias umta="devmon -u"
@@ -75,6 +78,8 @@ alias nt3="nosetests3"
 alias upk='atool -x'
 alias upt='atool -X'
 alias pk='atool -a'
+alias xeph='Xephyr -ac -br -noreset -screen 800x600 :1'
+alias st='subberthehut -s'
 
 prepend() {
     for i in *; do mv $i $1$i; done
