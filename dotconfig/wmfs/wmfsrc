@@ -8,8 +8,6 @@
                 name = "liberation mono:pixelsize=11:spacing=mono:weight=bold"
             [/font]
         [/fonts]
-        # name = "default"
-        font = "liberation mono:pixelsize=11:spacing=mono"
         # Bars
         bars_width = 16
         bars_fg = "#8e8e8e"
@@ -142,5 +140,5 @@
     [key] mod = {"Super"} key = "m" func = "layout_vmirror" [/key]
     [key] mod = {"Super", "Shift"} key = "m" func = "layout_hmirror" [/key]
     [key] mod = {"Super"} key = "f" func = "client_focus_click" [/key]
-    [key] mod = {"Super"} key = "p" func = "spawn" cmd = "dmenu_run -b -i -fn '-*-liberation mono-medium-r-*-*-11-*-*-*-*-*-*-*' -nb '#313131' -sb '#313131'" [/key]
+    [key] mod = {"Super"} key = "p" func = "spawn" cmd = "interrobang" [/key]
 [/keys]

@@ -3,13 +3,13 @@ copyq &
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 xsetroot -cursor_name left_ptr
 urxvtd -q -o -f &
-#pyLoadCore &
 dropboxd &
 eval `cat $HOME/.fehbg` &
 devmon &
 redshift -l 51.12493:17.05357 -m vidmode &
 canto-daemon &
 start-pulseaudio-x11
+transmission-daemon
 python $HOME/.config/wmfs/bottomstatus.py &
 python $HOME/.config/wmfs/topstatus.py &
 exec wmfs

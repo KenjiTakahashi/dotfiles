@@ -32,7 +32,7 @@ source $ZSH/oh-my-zsh.sh
 source /etc/profile
 export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
 export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
-export GEM_HOME=$HOME/.gem/ruby/1.9.1
+export GEM_HOME=$HOME/.gem/ruby/2.0.0
 export EDITOR="vim"
 alias gcam='gc -am'
 alias gf='g fetch'
@@ -64,10 +64,10 @@ alias mt="udevil mount"
 alias umt="udevil umount"
 alias umta="devmon -u"
 plo() {
-    pdflatex $1.tex && zathura $1.pdf
+    pdflatex $1.tex && qpdfview $1.pdf
 }
 xlo() {
-    xelatex $1.tex && zathura $1.pdf
+    xelatex $1.tex && qpdfview $1.pdf
 }
 alias p2="python2"
 alias p3="python3"
@@ -80,6 +80,7 @@ alias upt='atool -X'
 alias pk='atool -a'
 alias xeph='Xephyr -ac -br -noreset -screen 800x600 :1'
 alias st='subberthehut -s'
+alias mongod='mongod --smallfiles'
 
 prepend() {
     for i in *; do mv $i $1$i; done

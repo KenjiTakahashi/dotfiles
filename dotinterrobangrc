@@ -1,0 +1,16 @@
+set font = -*-liberation mono-medium-r-*-*-11-*-*-*-*-*-*
+set geometry = 0x16+0+752
+set border = 1px #383a3b
+set colors = #8e8e8e #383a3b #383a3b #8e8e8e #383a3b #ffffff
+
+set bangchar = ;
+set autocomp = 1
+set list = true
+set last = true
+
+bang term = urxvtc -e %s
+bang web = firefox %s
+bang pdf = qpdfview %s
+bang man = urxvtc -e man %s
+
+tab default = percontation "%s" %s | sort -u

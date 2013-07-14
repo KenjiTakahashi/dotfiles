@@ -19,7 +19,10 @@ class Dang(Mixer):
         o += self.square(lvl, length, True) + self.sep(True)
         if len(data) == 3:
             val = data[2].split(' ')[0].split(':')
-            val = int(val[0]) * 60 + int(val[1])
+            try:
+                val = int(val[0]) * 60 + int(val[1])
+            except ValueError:
+                val = 0
             v, length = self.do_graph(
                 data[0] == "Discharing" and -val or val, val, True
             )
