@@ -20,15 +20,14 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'lettuce.vim'
 Bundle 'w0ng/vim-hybrid'
 Bundle 'scrooloose/syntastic'
-Bundle 'The-NERD-Commenter'
-Bundle 'The-NERD-tree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
 Bundle 'surround.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-markdown'
 Bundle 'SirVer/ultisnips'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
-Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
 Bundle 'Rykka/easydigraph.vim'
 Bundle 'Lokaltog/vim-powerline'
@@ -38,9 +37,11 @@ Bundle 'YankRing.vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'airblade/vim-gitgutter'
+Bundle 'mhinz/vim-signify'
+Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'dpwright/vim-tup'
 
 set t_Co=256
 let g:hybrid_use_Xresources=1
@@ -216,3 +217,6 @@ let g:ycm_autoclose_preview_window_after_completion=1
 
 set tags=./tags,tags
 let g:easytags_dynamic_files=1
+
+let g:signify_vcs_list=['git']
+let g:signify_sign_overwrite=0
