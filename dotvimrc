@@ -3,9 +3,8 @@
 set nocompatible
 filetype off
 
-if has('neovim')
-    let s:python_host_init = 'python2 -c "import neovim; neovim.start_host()"'
-    let &initpython = s:python_host_init
+if has('nvim')
+    runtime! plugin/python_setup.vim
 endif
 
 "vundle
@@ -18,7 +17,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'lettuce.vim'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'surround.vim'
 Plugin 'kchmck/vim-coffee-script'
@@ -34,12 +32,19 @@ Plugin 'b4winckler/vim-objc'
 Plugin 'tpope/vim-fugitive'
 Plugin 'YankRing.vim'
 Plugin 'sjl/gundo.vim'
-Plugin 'godlygeek/tabular'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'mhinz/vim-signify'
+Plugin 'xolox/vim-misc'
+" Plugin 'xolox/vim-easytags'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Shirk/vim-gas'
 Plugin 'fatih/vim-go'
+Plugin 'peterhoeg/vim-qml'
+Plugin 'cespare/vim-toml'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'jaxbot/semantic-highlight.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'junegunn/vim-easy-align'
 
 call vundle#end()
 
@@ -132,10 +137,10 @@ set number
 set pastetoggle=<F2>
 
 "NERDTree
-let g:NERDTreeWinSize = 32
-let g:NERDTreeWinPos = "left"
-let g:NERDTreeAutoCenter = 0
-let g:NERDTreeHighlightCursorLine = 0
+let g:NERDTreeWinSize=32
+let g:NERDTreeWinPos="left"
+let g:NERDTreeAutoCenter=0
+let g:NERDTreeHighlightCursorLine=0
 nmap <F11> :NERDTreeToggle<bar>wincmd p<CR>
 
 "buffers
@@ -181,7 +186,7 @@ imap <F1> <Esc>
 let g:syntastic_enabled_balloons=0
 
 "pyflakes for python2
-au BufRead *.py if getline("$") == "#2" | let g:syntastic_python_flake8_exe='flake8-python2' | endif
+au BufRead *.py let g:syntastic_python_flake8_exe='flake8-python2'
 
 "objcpp=>objc
 au FileType objcpp set ft=objc
@@ -214,9 +219,6 @@ let g:ycm_allow_changing_updatetime=0
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_enable_diagnostic_signs=0
 
-set tags=./tags,tags
-let g:easytags_dynamic_files=1
-
 let g:signify_vcs_list=['git']
 let g:signify_sign_overwrite=0
 
@@ -224,3 +226,21 @@ nnoremap <leader><leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 let g:go_disable_autoinstall=1
 let g:go_fmt_autosave=0
+
+nnoremap <Leader>s :SemanticHighlightToggle<cr>
+au BufNewFile,BufRead *.go let g:blacklist = [
+    \'if', 'func', 'make', 'for',
+    \'range', 'panic', 'len', 'nil',
+    \'interface', 'map', 'string',
+    \'byte', 'return', 'true', 'false',
+    \'package', 'import', 'bool', 'type',
+    \'struct', 'var', 'int64', 'uint', 'int',
+\ ]
+
+let g:tcommentMapLeaderOp1=',c'
+
+vmap <Enter> <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+
+set tags=./.vimtags;
+let g:easytags_dynamic_files=2
