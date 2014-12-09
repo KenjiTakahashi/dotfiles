@@ -3,38 +3,45 @@
 set nocompatible
 filetype off
 
+if has('neovim')
+    let s:python_host_init = 'python2 -c "import neovim; neovim.start_host()"'
+    let &initpython = s:python_host_init
+endif
+
 "vundle
 "Added (almost) on top, so vim can properly see color schemes
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle "gmarik/vundle"
-Bundle 'kien/ctrlp.vim'
-Bundle 'lettuce.vim'
-Bundle 'w0ng/vim-hybrid'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'surround.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'tpope/vim-markdown'
-Bundle 'SirVer/ultisnips'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'wavded/vim-stylus'
-Bundle 'Rykka/easydigraph.vim'
-Bundle 'bling/vim-airline'
-Bundle 'b4winckler/vim-objc'
-Bundle 'tpope/vim-fugitive'
-Bundle 'YankRing.vim'
-Bundle 'sjl/gundo.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'mhinz/vim-signify'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-easytags'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'dpwright/vim-tup'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'lettuce.vim'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'surround.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-markdown'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'wavded/vim-stylus'
+Plugin 'Rykka/easydigraph.vim'
+Plugin 'bling/vim-airline'
+Plugin 'b4winckler/vim-objc'
+Plugin 'tpope/vim-fugitive'
+Plugin 'YankRing.vim'
+Plugin 'sjl/gundo.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'mhinz/vim-signify'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Shirk/vim-gas'
+Plugin 'fatih/vim-go'
+
+call vundle#end()
 
 set t_Co=256
 let g:hybrid_use_Xresources=1
@@ -110,6 +117,7 @@ set expandtab
 autocmd FileType jade set sw=4
 autocmd FileType stylus set sw=4
 autocmd FileType yaml set sw=2 ts=2 sts=2
+autocmd FileType go set noexpandtab
 autocmd BufNewFile,BufRead *.m set ft=objc
 autocmd BufNewFile,BufRead *.mm set ft=objc
 
@@ -204,9 +212,15 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 
 let g:ycm_allow_changing_updatetime=0
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_enable_diagnostic_signs=0
 
 set tags=./tags,tags
 let g:easytags_dynamic_files=1
 
 let g:signify_vcs_list=['git']
 let g:signify_sign_overwrite=0
+
+nnoremap <leader><leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+let g:go_disable_autoinstall=1
+let g:go_fmt_autosave=0
