@@ -1,0 +1,10 @@
+[Bsp]
+receiver = "bspwm"
+
+[Date]
+receiver = "Date"
+pollInterval = "1s"
+format = "02/01/2006 | 15:04:05"
+
+[Osop]
+template = """<range .Bsp.Monitors>{S<.Index><range .Desktops><if not (eq .State "o" "O")>{CF0xff252727<end>{<if eq .State "O" "F" "U">CB0xff5f875f<end> <.Name> }<if not (eq .State "o" "O")>}<end><end>}<end>{AR<.Date> }"""
