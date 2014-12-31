@@ -24,21 +24,24 @@ DISABLE_AUTO_UPDATE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git archlinux vi-mode zsh-syntax-highlighting)
+plugins=(git archlinux vi-mode history zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
+source /usr/bin/virtualenvwrapper.sh
 source /etc/profile
-export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
-export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
+source $HOME/.zinternal
+
 export GEM_HOME=$HOME/.gem/ruby/2.0.0
+export GOPATH=$HOME/go
+
+export XDG_CONFIG_HOME=$HOME/.config
+export PATH=$GOPATH/bin:$GEM_HOME/bin:$PATH
 export EDITOR="vim"
 alias gcam='gc -am'
 alias gf='g fetch'
 alias gd='g diff'
 alias tdc='clear && td'
-alias tn='tmux'
+alias tn='tmux -2'
 ta() {
     if (($+1)) then
         tmux a -t $1
@@ -54,9 +57,8 @@ alias ac='aria2c -c'
 alias rs='canto-curses'
 alias f='ranger'
 alias y='yaourt'
-alias burp='burp -C $HOME/.burpc -k'
 sm() {
-    cuebreakpoints *cue | shnsplit -t "%p_-_%a_-_%n_-_%t" -o flac *$1
+    shnsplit -t "%p_-_%a_-_%n_-_%t" -o flac -f $1 $2
 }
 alias sf="screenfetch -D 'archlinux'"
 alias :D='sf -s'
@@ -80,7 +82,6 @@ alias upt='atool -X'
 alias pk='atool -a'
 alias xeph='Xephyr -ac -br -noreset -screen 800x600 :1'
 alias st='subberthehut -s'
-alias mongod='mongod --smallfiles'
 
 prepend() {
     for i in *; do mv $i $1$i; done
@@ -99,4 +100,12 @@ pc() {
     rm *.pdf
 }
 
+hbp() {
+    HandBrakeCLI -e x264 -q 25 -E faac -B 160 --strict-anamorphic -i $1 -o ${1:r}.mkv
+}
+
 unalias pacmir
+
+bindkey '^R' history-incremental-search-backward
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
