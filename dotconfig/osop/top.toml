@@ -7,7 +7,7 @@ shorts = true
 [Mpd]
 receiver = "Mpd"
 pollInterval = "15s"
-address = "kiera:6666"
+address = "localhost:6666"
 
 [Transmission]
 receiver = "Transmission"
@@ -21,4 +21,4 @@ pollInterval = "10m"
 location = "Wrocław,pl"
 
 [Osop]
-template = " {CF0xff5f875fCPU} <.Sys.CPU.Percent.cpu0> {CF0xff5f875fMEM} <.Sys.Memory.UsedA> {CF0xff5f875fSWP} <.Sys.Swap.Used> {CF0xff5f875fDWN} <.Sys.Network.wlan0.Download> {CF0xff5f875fUPD} <.Sys.Network.wlan0.Upload> {CF0xff5f875fMSC}<if eq (stringify .Mpd.Status.state) \"play\"> <.Mpd.Song.Artist>{F1/}<.Mpd.Song.Album>{F1/}<.Mpd.Song.Track>{F1/}<.Mpd.Song.Title><else> OFF <end>{AR{CF0xff5f875fTMD} <.Transmission.DownloadSpeed> {CF0xff5f875fTMU} <.Transmission.UploadSpeed> {CF0xff5f875fTMP} <.Owm.Temp>°C }"
+template = """ {CF0xff5f875fCPU} <.Sys.CPU.Percent.cpu0 | printf "%.2f">% {CF0xff5f875fMEM} <.Sys.Memory.UsedA> {CF0xff5f875fSWP} <.Sys.Swap.Used> {CF0xff5f875fDWN} <.Sys.Network.wlan0.Download> {CF0xff5f875fUPD} <.Sys.Network.wlan0.Upload> {CF0xff5f875fMSC}<if eq (stringify .Mpd.Status.state) \"play\"> <.Mpd.Song.Artist>{F1/}<.Mpd.Song.Album>{F1/}<.Mpd.Song.Track>{F1/}<.Mpd.Song.Title><else> OFF <end>{AR{CF0xff5f875fTMD} <.Transmission.DownloadSpeed> {CF0xff5f875fTMU} <.Transmission.UploadSpeed> {CF0xff5f875fTMP} <.Owm.Temp | printf "%.2f">°C }"""

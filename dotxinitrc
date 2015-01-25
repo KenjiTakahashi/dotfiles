@@ -11,7 +11,7 @@ eval `cat $HOME/.fehbg` &
 redshift -l 51.12493:17.05357 -m vidmode &
 #canto-daemon &
 #start-pulseaudio-x11
-osop -c top.toml | gobar --fg=0x8e8e8e --bg=0x383a3b --fonts=/usr/share/fonts/TTF/LiberationMono-Regular.ttf:11,/usr/share/fonts/TTF/LiberationMono-Bold.ttf:11 &
-#osop -c bsp.toml | gobar --bottom --fg=0xff8e8e8e --bg=0xff383a3b --fonts=/usr/share/fonts/TTF/LiberationMono-Regular:11 &
+#osop -c top.toml | $HOME/go/src/github.com/KenjiTakahashi/gobar/gobar --fg=0x8e8e8e --bg=0x383a3b --fonts=/usr/share/fonts/TTF/LiberationMono-Regular.ttf:11,/usr/share/fonts/TTF/LiberationMono-Bold.ttf:11 &
+#osop -c bsp.toml | gobar --bottom --fg=0xff8e8e8e --bg=0xff383a3b --fonts=/usr/share/fonts/TTF/LiberationMono-Regular.ttf:11 &
 #osop -c wingo.toml | gobar --bottom --fg=0xff8e8e8e --bg=0xff383a3b --fonts=/usr/share/fonts/TTF/LiberationMono-Regular.ttf:11 &
 exec wingo

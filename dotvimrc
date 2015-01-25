@@ -45,6 +45,8 @@ Plugin 'chase/vim-ansible-yaml'
 Plugin 'jaxbot/semantic-highlight.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'baskerville/vim-sxhkdrc'
+Plugin 'wting/rust.vim'
 
 call vundle#end()
 
@@ -225,7 +227,8 @@ let g:signify_sign_overwrite=0
 nnoremap <leader><leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 let g:go_disable_autoinstall=1
-let g:go_fmt_autosave=0
+let g:go_fmt_command="goimports"
+let g:go_fmt_fail_silently=1
 
 nnoremap <Leader>s :SemanticHighlightToggle<cr>
 au BufNewFile,BufRead *.go let g:blacklist = [
