@@ -13,10 +13,11 @@ canto-daemon &
 start-pulseaudio-x11
 
 GEOMETRY="0x16+0+0"
-for ((i=1;i<$(xrandr -q | grep ' connected' | wc -l);++i)); do
+MONITORS=$(xrandr -q | grep ' connected' | wc -l)
+for i in $(seq 2 $MONITORS); do
     GEOMETRY=",$GEOMETRY"
 done
-osop -c top.toml | gobar --geometries=$GEOMETRY, --fg=0x8e8e8e --bg=0x383a3b --fonts=/usr/share/fonts/TTF/LiberationMono-Regular.ttf:11,/usr/share/fonts/TTF/LiberationMono-Bold.ttf:11 &
+osop -c top.toml | gobar --geometries=$GEOMETRY --fg=0x8e8e8e --bg=0x383a3b --fonts=/usr/share/fonts/TTF/LiberationMono-Regular.ttf:11,/usr/share/fonts/TTF/LiberationMono-Bold.ttf:11 &
 
 case $(basename $1) in
     wingo)
