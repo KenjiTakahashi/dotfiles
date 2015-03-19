@@ -53,4 +53,4 @@ URxvt.urlLauncher:/usr/bin/firefox
 URxvt.matcher.button:1
 
 ! Cursor
-Xcursor.theme: GT3-small
+Xcursor.theme: GT3
