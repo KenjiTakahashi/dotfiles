@@ -27,7 +27,7 @@ from distutils.dir_util import copy_tree
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("config", help="the JSON file you want to use")
-    parser.add_argument("-r", "--replace", action="store_true",
+    parser.add_argument("-r", "--replace", nargs='?', const=True,
                         help="replace files/folders if they already exist")
     args = parser.parse_args()
     js = json.load(open(args.config))
@@ -37,7 +37,7 @@ def main():
         dest = os.path.expanduser(dest).encode('utf8')
 
         if os.path.exists(dest):
-            if not args.replace:
+            if args.replace is not True and args.replace != os.path.basename(src):
                 return
             tempdir = tempfile.mkdtemp()
             if os.path.isfile(dest):
@@ -50,6 +50,10 @@ def main():
                 else:
                     shutil.rmtree(dest)
             print("Linking {} -> {}".format(dest, src))
+            try:
+                os.makedirs(src)
+            except os.error:
+                pass
             os.symlink(src, dest)
             if os.path.isdir(dest):
                 copy_tree(tempdir, dest)
@@ -86,8 +90,8 @@ def main():
             continue
         copy_tree(src, dest)
 
-    for command in js.get("commands", []):
-        os.system(command)
+    # for command in js.get("commands", []):
+    #     os.system(command)
 
     print("Done!")
 

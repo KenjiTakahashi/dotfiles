@@ -1,4 +1,5 @@
-*~
 __pycache__
 bundle/
 ycm/
+dotconfig/ranger/history
+dotconfig/ranger/tagged
