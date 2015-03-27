@@ -15,7 +15,8 @@
                 "osop": "osop",
                 "sxhkd": "sxhkd",
                 "wingo": "wingo",
-                "ranger": "ranger"
+                "ranger": "ranger",
+                "termite": "termite"
             }
         ]
     },
