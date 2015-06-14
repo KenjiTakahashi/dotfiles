@@ -27,8 +27,10 @@ from distutils.dir_util import copy_tree
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("config", help="the JSON file you want to use")
-    parser.add_argument("-r", "--replace", nargs='?', const=True,
-                        help="replace files/folders if they already exist")
+    parser.add_argument(
+        "-r", "--replace", nargs='?', const=True,
+        help="replace files/folders if they already exist",
+    )
     args = parser.parse_args()
     js = json.load(open(args.config))
 
@@ -90,8 +92,8 @@ def main():
             continue
         copy_tree(src, dest)
 
-    # for command in js.get("commands", []):
-    #     os.system(command)
+    for command in js.get("commands", []):
+        os.system(command)
 
     print("Done!")
 

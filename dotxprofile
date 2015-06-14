@@ -6,7 +6,8 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export XDG_CURRENT_DESKTOP=gnome
 xsetroot -cursor_name left_ptr
 CopyConsole -daemonize
-setroot -fw $HOME/wallpapers/46A5B1599.jpg $HOME/wallpapers/46A5B1599.jpg
+export WALLPAPER=$HOME/wallpapers/46A5B1599.jpg
+setroot -fw $WALLPAPER $WALLPAPER
 devmon &
 redshift -l 51.12493:17.05357 -m vidmode &
 canto-daemon &

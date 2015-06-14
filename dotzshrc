@@ -35,7 +35,7 @@ export GEM_HOME=$HOME/.gem/ruby/2.0.0
 export GOPATH=$HOME/go
 
 export XDG_CONFIG_HOME=$HOME/.config
-export PATH=$GOPATH/bin:$GEM_HOME/bin:$PATH
+export PATH=$HOME/.bin:$GOPATH/bin:$GEM_HOME/bin:$PATH
 export EDITOR="vim"
 alias gcam='gc -am'
 alias gf='g fetch'
@@ -102,6 +102,12 @@ pc() {
 
 hbp() {
     HandBrakeCLI -e x264 -q 25 -E faac -B 160 --strict-anamorphic -i $1 -o ${1:r}.mkv
+}
+
+dis() {
+    xrandr --output LVDS-0 --output HDMI-0 --auto --right-of LVDS-0
+    setroot -fw $WALLPAPER $WALLPAPER
+    ./.config/bspwm/bspwmrc
 }
 
 unalias pacmir
