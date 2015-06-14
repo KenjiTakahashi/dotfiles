@@ -1,5 +1,6 @@
 {
     "link": {
+        "dotgitignore": "~/.gitignore",
         "dotvimrc": "~/.vimrc",
         "dotgtkrc-2.0": "~/.gtkrc-2.0",
         "dotinterrobangrc": "~/.interrobangrc",
