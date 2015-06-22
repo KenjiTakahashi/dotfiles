@@ -13,7 +13,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'lettuce.vim'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'scrooloose/syntastic'
@@ -34,8 +34,7 @@ Plugin 'YankRing.vim'
 Plugin 'sjl/gundo.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'mhinz/vim-signify'
-Plugin 'xolox/vim-misc'
-" Plugin 'xolox/vim-easytags'
+Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Shirk/vim-gas'
 Plugin 'fatih/vim-go'
@@ -192,9 +191,6 @@ let g:syntastic_enabled_balloons=0
 "pyflakes for python2
 au BufRead *.py let g:syntastic_python_flake8_exe='flake8-python2'
 
-"objcpp=>objc
-au FileType objcpp set ft=objc
-
 let g:EasyDigraph_imap='<C-b>'
 
 set laststatus=2
@@ -246,6 +242,3 @@ let g:tcommentMapLeaderOp1=',c'
 
 vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
-
-set tags=./.vimtags;
-let g:easytags_dynamic_files=2
