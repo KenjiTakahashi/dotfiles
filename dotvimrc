@@ -1,55 +1,49 @@
-"Karol 'Kenji Takahashi' Woźniak © 2012 - 2013
+"Karol 'Kenji Takahashi' Woźniak © 2012 - 2015
 
 set nocompatible
 filetype off
 
-if has('nvim')
-    runtime! plugin/python_setup.vim
-endif
+call plug#begin('~/.vim/plugged')
 
-"vundle
-"Added (almost) on top, so vim can properly see color schemes
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+Plug 'gmarik/Vundle.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
+Plug 'surround.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'tpope/vim-markdown'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
+Plug 'Rykka/easydigraph.vim'
+Plug 'bling/vim-airline'
+Plug 'b4winckler/vim-objc'
+Plug 'tpope/vim-fugitive'
+Plug 'YankRing.vim'
+Plug 'sjl/gundo.vim'
+Plug 'Valloric/YouCompleteMe', {'do': './install.sh --gocode-completer'}
+Plug 'mhinz/vim-signify'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'Shirk/vim-gas'
+Plug 'fatih/vim-go'
+Plug 'peterhoeg/vim-qml'
+Plug 'cespare/vim-toml'
+Plug 'chase/vim-ansible-yaml'
+Plug 'jaxbot/semantic-highlight.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'baskerville/vim-sxhkdrc'
+Plug 'wting/rust.vim'
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'lettuce.vim'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'surround.vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'tpope/vim-markdown'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
-Plugin 'wavded/vim-stylus'
-Plugin 'Rykka/easydigraph.vim'
-Plugin 'bling/vim-airline'
-Plugin 'b4winckler/vim-objc'
-Plugin 'tpope/vim-fugitive'
-Plugin 'YankRing.vim'
-Plugin 'sjl/gundo.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'mhinz/vim-signify'
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Shirk/vim-gas'
-Plugin 'fatih/vim-go'
-Plugin 'peterhoeg/vim-qml'
-Plugin 'cespare/vim-toml'
-Plugin 'chase/vim-ansible-yaml'
-Plugin 'jaxbot/semantic-highlight.vim'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'baskerville/vim-sxhkdrc'
-Plugin 'wting/rust.vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'romainl/Apprentice'
+Plug 'zefei/simple-dark'
+Plug 'AlxHnr/clear_colors'
 
-call vundle#end()
+call plug#end()
 
 set t_Co=256
+set background=dark
 let g:hybrid_use_Xresources=1
 colorscheme hybrid
 
