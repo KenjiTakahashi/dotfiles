@@ -26,6 +26,8 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git archlinux vi-mode history zsh-syntax-highlighting history-substring-search)
 
+eval $(dircolors $HOME/.dircolors)
+
 source $ZSH/oh-my-zsh.sh
 source /usr/bin/virtualenvwrapper.sh
 source /etc/profile

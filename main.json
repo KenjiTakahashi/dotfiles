@@ -9,6 +9,7 @@
         "dotXresources": "~/.Xresources",
         "dotzshrc": "~/.zshrc",
         "dotvim": "~/.vim",
+        "dotdircolors": "~/.dircolors",
         "dotconfig": [
             "~/.config", {
                 "bspwm": "bspwm",
