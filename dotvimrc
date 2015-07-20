@@ -236,3 +236,12 @@ let g:tcommentMapLeaderOp1=',c'
 
 vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
+
+" Use the_silver_searcher, if available
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor\ --column
+    set grepformat=%f:%l:%c%m
+
+    let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
+    let g:ctrlp_use_caching=0
+endif
