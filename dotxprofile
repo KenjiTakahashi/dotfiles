@@ -11,11 +11,10 @@ setroot -fw $WALLPAPER $WALLPAPER
 devmon &
 redshift -l 51.12493:17.05357 -m vidmode &
 canto-daemon &
-start-pulseaudio-x11
+systemctl --user start pulseaudio
 
 if uname -v | grep -q "NixOS"; then
     FONTDIR="/run/current-system/sw/share/X11-fonts"
-    NIXOS=true
 else
     FONTDIR="/usr/share/fonts/TTF"
 fi
@@ -31,9 +30,5 @@ osop -c top.toml | gobar --geometries=$GEOMETRY --fg=0x8e8e8e --bg=0x383a3b --fo
 case "$1" in
     *wingo)
         osop -c wingo.toml | gobar --bottom --fg=0xff8e8e8e --bg=0xff383a3b --fonts=$FONTDIR/LiberationMono-Regular.ttf:11 &
-        ;;
-    *bspwm)
-        NIXOS || sxhkd &
-        osop -c bsp.toml | gobar --bottom --fg=0xff8e8e8e --bg=0xff383a3b --fonts=$FONTDIR/LiberationMono-Regular.ttf:11 &
         ;;
 esac

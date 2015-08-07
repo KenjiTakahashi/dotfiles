@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+export PATH=$HOME/go/bin:$PATH
+
+echo "AAA" > /tmp/aaaa
+
+if uname -v | grep -q "NixOS"; then
+    FONTDIR="/run/current-system/sw/share/X11-fonts"
+else
+    FONTDIR="/usr/share/fonts/TTF"
+fi
+
+osop -c bsp.toml  2>/tmp/osop1| gobar --bottom --fg=0xff8e8e8e --bg=0xff383a3b --fonts=$FONTDIR/LiberationMono-Regular.ttf:11 &
