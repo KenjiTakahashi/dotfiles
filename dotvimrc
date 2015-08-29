@@ -5,7 +5,6 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'gmarik/Vundle.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
