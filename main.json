@@ -14,6 +14,7 @@
             "~/.config", {
                 "bspwm": "bspwm",
                 "burp": "burp",
+                "gtk-3.0": "gtk-3.0",
                 "osop": "osop",
                 "sxhkd": "sxhkd",
                 "wingo": "wingo",
