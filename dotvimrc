@@ -158,6 +158,7 @@ nmap <silent> mt :CtrlPBufTagAll<CR>
 nmap <silent> mr :CtrlPMRU<CR>
 set wildignore+=*~
 set wildignore+=node_modules
+set wildignore+=bower_components
 set wildignore+=build
 set wildignore+=dist
 set wildignore+=*.o
