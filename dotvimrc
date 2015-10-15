@@ -14,9 +14,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go'
 Plug 'jaxbot/semantic-highlight.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'justinmk/vim-sneak'
 Plug 'kchmck/vim-coffee-script'
 Plug 'lfex/vim-lfe'
-Plug 'Lokaltog/vim-easymotion'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'mbbill/undotree'
@@ -127,7 +127,7 @@ let g:Tb_MapWindowNavVim=1
 let g:Tb_MapWindowNavArrows=1
 let mapleader = ","
 
-" no blink, even in GUI
+"no blink, even in GUI
 set guicursor=a:blinkon0
 
 set number
@@ -191,8 +191,10 @@ let g:syntastic_enabled_balloons=0
 "pyflakes for python2
 au BufRead *.py let g:syntastic_python_flake8_exe='flake8-python2'
 
+"easydigraph
 let g:EasyDigraph_imap='<C-b>'
 
+"airline
 set laststatus=2
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -213,16 +215,18 @@ let g:airline_exclude_preview=1
 let g:airline#extensions#tagbar#enabled=0
 let g:airline#extensions#csv#enabled=0
 
+"ultisnips
 let g:UltiSnipsExpandTrigger="<c-j>"
 
+"YouCompleteMe
 let g:ycm_allow_changing_updatetime=0
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_enable_diagnostic_signs=0
+nnoremap <leader><leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+"signify
 let g:signify_vcs_list=['git']
 let g:signify_sign_overwrite=0
-
-nnoremap <leader><leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 let g:go_disable_autoinstall=1
 let g:go_fmt_command="goimports"
@@ -238,12 +242,14 @@ au BufNewFile,BufRead *.go let g:blacklist = [
     \'struct', 'var', 'int64', 'uint', 'int',
 \ ]
 
+"tcomment
 let g:tcommentMapLeaderOp1=',c'
 
+"easy-align
 vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
 
-" Use the_silver_searcher, if available
+"use the_silver_searcher, if available
 if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor\ --column
     set grepformat=%f:%l:%c%m
@@ -251,3 +257,6 @@ if executable('ag')
     let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
     let g:ctrlp_use_caching=0
 endif
+
+"sneak
+let g:sneak#s_next=1
