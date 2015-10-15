@@ -19,6 +19,7 @@ Plug 'lfex/vim-lfe'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
+Plug 'mbbill/undotree'
 Plug 'mhinz/vim-signify'
 Plug 'peterhoeg/vim-qml'
 Plug 'Rykka/easydigraph.vim'
@@ -26,7 +27,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'Shirk/vim-gas'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'sjl/gundo.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
@@ -168,8 +168,13 @@ let g:yankring_window_height=20
 let g:yankring_history_file='.yankring_history'
 noremap <silent> yr :YRShow<CR>
 
-"gundo
-nnoremap go :GundoToggle<CR>
+"undotree
+nnoremap go :UndotreeToggle<CR>
+if !isdirectory($HOME."/.vim/undodir")
+    call mkdir($HOME."/.vim/undodir", "", 0700)
+endif
+set undodir=~/.vim/undodir
+set undofile
 
 "insert coding to python/ruby files
 au BufNewFile *.py put! ='# -*- coding: utf-8 -*-'
