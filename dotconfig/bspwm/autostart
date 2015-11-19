@@ -2,8 +2,6 @@
 
 export PATH=$HOME/go/bin:$PATH
 
-echo "AAA" > /tmp/aaaa
-
 if uname -v | grep -q "NixOS"; then
     FONTDIR="/run/current-system/sw/share/X11-fonts"
 else
