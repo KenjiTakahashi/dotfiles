@@ -3,3 +3,5 @@
 .vimtags
 .td
 tags
+tags.lock
+tags.temp
