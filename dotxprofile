@@ -1,13 +1,12 @@
 [[ -f $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
 export PATH=$HOME/go/bin:$PATH
-xrandr --output LVDS-0 --output HDMI-0 --right-of LVDS-0
+xrandr %%xrandr
 clipd 2> /tmp/clipd.log &
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export XDG_CURRENT_DESKTOP=gnome
 xsetroot -cursor_name left_ptr
 CopyConsole -daemonize
-export WALLPAPER=$HOME/wallpapers/46A5B1599.jpg
-setroot -fw $WALLPAPER $WALLPAPER
+setroot -fw %%wallpaper
 devmon &
 redshift -l 51.12493:17.05357 -m vidmode &
 canto-daemon &

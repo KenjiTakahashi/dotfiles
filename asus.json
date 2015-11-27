@@ -1,17 +1,35 @@
 {
-    "link": {
+    "vars": {
+        "xrandr": "--output LVDS-0 --output HDMI-0 --right-of LVDS-0",
+        "wallpaper": "$HOME/wallpapers/46A5B1599.jpg"
+    },
+    "links": {
         "dotgitignore": "~/.gitignore",
         "dotvimrc": "~/.vimrc",
         "dotgtkrc-2.0": "~/.gtkrc-2.0",
         "dotinterrobangrc": "~/.interrobangrc",
         "dotxinitrc": "~/.xinitrc",
-        "dotxprofile": "~/.xprofile",
+        "dotxprofile": {
+            "destination": "~/.xprofile",
+            "templates": {
+                "xrandr": "{xrandr}",
+                "wallpaper": "{wallpaper} {wallpaper}"
+            }
+        },
         "dotXresources": "~/.Xresources",
-        "dotzshrc": "~/.zshrc",
+        "dotzshrc": {
+            "destination": "~/.zshrc",
+            "templates": {
+                "xrandr": "{xrandr}",
+                "wallpaper": "{wallpaper} {wallpaper}",
+                "theme": "afowler"
+            }
+        },
         "dotvim": "~/.vim",
         "dotdircolors": "~/.dircolors",
-        "dotconfig": [
-            "~/.config", {
+        "dotconfig": {
+            "destination": "~/.config",
+            "links": {
                 "bspwm": "bspwm",
                 "burp": "burp",
                 "gtk-3.0": "gtk-3.0",
@@ -21,7 +39,7 @@
                 "ranger": "ranger",
                 "termite": "termite"
             }
-        ]
+        }
     },
     "commands": [
         "vim +PlugUpdate +qall",

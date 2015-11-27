@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 # Copyright (C) 2015 Vibhav Pant <vibhavp@gmail.com>
-# Modified by karol 'Kenji Takahashi' Woźniak
+# Modified by Karol 'Kenji Takahashi' Woźniak
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -21,8 +21,14 @@ import argparse
 import json
 import os
 import shutil
+import string
 import tempfile
 from distutils.dir_util import copy_tree
+
+
+class T(string.Template):
+    delimiter = '%%'
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -33,8 +39,24 @@ def main():
     )
     args = parser.parse_args()
     js = json.load(open(args.config))
+    vars = js.get("vars", {})
 
     def aux(src, dest):
+        if isinstance(dest, dict):
+            templates = dest['templates']
+            try:
+                for tname, tval in templates.items():
+                    templates[tname] = tval.format(**vars)
+                with open(src) as f:
+                    t = T(f.read())
+                with open("{}.fin".format(src), "w") as f:
+                    f.write(t.substitute(templates))
+            except Exception as e:
+                print("Failed to apply template: `{}`".format(e))
+                return
+            src = "{}.fin".format(src)
+            dest = dest['destination']
+
         src = os.path.abspath(src).encode('utf8')
         dest = os.path.expanduser(dest).encode('utf8')
 
@@ -61,8 +83,7 @@ def main():
                 copy_tree(tempdir, dest)
         else:
             if os.path.islink(dest):
-                # Dead link
-                os.remove(dest)
+                os.remove(dest)  # Dead link
             print("Linking {} -> {}".format(dest, src))
             os.symlink(src, dest)
 
@@ -72,14 +93,14 @@ def main():
             print("Creating directory {}".format(path))
             os.makedirs(path)
 
-    for src, dest in js.get("link", {}).iteritems():
-        if isinstance(dest, list):
-            base = os.path.expanduser(dest[0])
+    for src, dest in js.get("links", {}).iteritems():
+        if isinstance(dest, dict) and 'links' in dest:
+            base = os.path.expanduser(dest['destination'])
             try:
                 os.makedirs(base)
             except os.error:
                 pass
-            for s, d in dest[1].iteritems():
+            for s, d in dest['links'].iteritems():
                 aux(os.path.join(src, s), os.path.join(base, d))
         else:
             aux(src, dest)

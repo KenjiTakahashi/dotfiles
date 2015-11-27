@@ -1,3 +1,3 @@
 ```sh
-$ ./populate.py [-r] main.json
+$ ./populate.py <json> [-r]
 ```

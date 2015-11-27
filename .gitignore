@@ -1,4 +1,5 @@
 __pycache__
+*.fin
 plugged/
 dotconfig/ranger/history
 dotconfig/ranger/tagged
