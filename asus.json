@@ -6,6 +6,7 @@
     "links": {
         "dotgitignore": "~/.gitignore",
         "dotvimrc": "~/.vimrc",
+        "dotvim": "~/.vim",
         "dotgtkrc-2.0": "~/.gtkrc-2.0",
         "dotinterrobangrc": "~/.interrobangrc",
         "dotxinitrc": "~/.xinitrc",
@@ -25,7 +26,6 @@
                 "theme": "afowler"
             }
         },
-        "dotvim": "~/.vim",
         "dotdircolors": "~/.dircolors",
         "dotconfig": {
             "destination": "~/.config",

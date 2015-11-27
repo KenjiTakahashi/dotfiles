@@ -1,0 +1,25 @@
+{
+    "links": {
+        "dotgitignore": "~/.gitignore",
+        "dotvimrc": "~/.vimrc",
+        "dotvim": "~/.vim",
+        "dotzshrc": {
+            "destination": "~/.zshrc",
+            "templates": {
+                "xrandr": "",
+                "wallpaper": "",
+                "theme": "kafeitu"
+            }
+        },
+        "dotconfig": {
+            "destination": "~/.config",
+            "links": {
+                "ranger": "ranger"
+            }
+        }
+    },
+    "commands": [
+        "vim +PlugUpdate +qall",
+        "git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh"
+    ]
+}
