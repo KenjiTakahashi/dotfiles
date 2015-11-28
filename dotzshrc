@@ -26,12 +26,14 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git archlinux vi-mode history zsh-syntax-highlighting history-substring-search)
 
-eval $(dircolors $HOME/.dircolors)
-
 source $ZSH/oh-my-zsh.sh
-source /usr/bin/virtualenvwrapper.sh
-source /etc/profile
-source $HOME/.zinternal
+
+vew=$(which virtualenvwrapper.sh)
+[[ -f $vew ]] && source $vew
+[[ -f /etc/profile ]] && source /etc/profile
+[[ -f $HOME/.zinternal ]] && source $HOME/.zinternal
+
+[[ -f $HOME/.dircolors ]] && eval $(dircolors $HOME/.dircolors)
 
 export GEM_HOME=$HOME/.gem/ruby/2.0.0
 export GOPATH=$HOME/go
