@@ -35,11 +35,9 @@ vew=$(which virtualenvwrapper.sh)
 
 [[ -f $HOME/.dircolors ]] && eval $(dircolors $HOME/.dircolors)
 
-export GEM_HOME=$HOME/.gem/ruby/2.0.0
-export GOPATH=$HOME/go
-
+export GOPATH=$HOME/languages/go
 export XDG_CONFIG_HOME=$HOME/.config
-export PATH=$HOME/.bin:$GOPATH/bin:$GEM_HOME/bin:$PATH
+export PATH=$HOME/.bin:$GOPATH/bin:$PATH
 export EDITOR="vim"
 alias gcam='gc -am'
 alias gf='g fetch'
