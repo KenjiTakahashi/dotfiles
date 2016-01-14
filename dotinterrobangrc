@@ -1,5 +1,5 @@
 set font = -*-liberation mono-medium-r-*-*-11-*-*-*-*-*-*
-set geometry = 1364x16+0+752
+set geometry = 1918x16+0+1184
 set border = 1px #383a3b
 set colors = #8e8e8e #383a3b #8e8e8e #383a3b #ffffff #383a3b
 set margin = 8
