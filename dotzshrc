@@ -103,7 +103,20 @@ pc() {
 }
 
 hbp() {
-    HandBrakeCLI -e x264 -q 25 -E faac -B 160 --strict-anamorphic -i $1 -o ${1:r}.mkv
+    HandBrakeCLI -e x265 -q 25 -E av_aac --strict-anamorphic -i $1 -o ${1:r}.m4v
+}
+mhbp() {
+    for fi in *.*; do
+        hbp "$fi"
+        if [ $? -eq 0 ]; then
+            FILESIZE=$(ls -lh "$fi" | awk '{print $5}')
+            rm "$fi"
+            FILESIZE_AFTER=$(ls -lh "${fi:r}.m4v" | awk '{print $5}')
+            echo "Done with $fi: $FILESIZE -> $FILESIZE_AFTER"
+        else
+            echo "Error with $fi"
+        fi
+    done
 }
 
 dis() {
