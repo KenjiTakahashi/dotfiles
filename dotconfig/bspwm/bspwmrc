@@ -13,9 +13,6 @@ bspc config focus_by_distance   true
 
 bspc query -M | xargs -i{} bspc monitor {} -d 1 2 3 e r t y u i o
 
-#bspc rule -a Gimp desktop=^8 follow=on floating=on
-#bspc rule -a Chromium desktop=^2
-#bspc rule -a Screenkey manage=off
 MONITORS=($(bspc query -M))
 MTAIL=${MONITORS[@]:(-1)}
 bspc config -m $MTAIL top_padding 16
@@ -23,3 +20,16 @@ if [[ "${MONITORS[0]}" != "$MTAIL" ]]; then
     bspc config -m ${MONITORS[0]} top_padding 0
 fi
 bspc config bottom_padding 16
+
+# Autostart
+sxhkd &
+
+export PATH=$HOME/languages/go/bin:$PATH
+
+if uname -v | grep -q "NixOS"; then
+    FONTDIR="/run/current-system/sw/share/X11-fonts"
+else
+    FONTDIR="/usr/share/fonts/TTF"
+fi
+
+osop -c bsp.toml 2>/tmp/osop1| gobar --bottom --fg=0xff8e8e8e --bg=0xff383a3b --fonts=$FONTDIR/LiberationMono-Regular.ttf:11 &
