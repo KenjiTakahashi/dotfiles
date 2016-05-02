@@ -118,6 +118,11 @@ mhbp() {
         fi
     done
 }
+thumb() {
+    for fi in *.{m4v,mp4,flv}; do
+        ffmpeg -ss 00:00:10 -i "$fi" -vf 'select=not(mod(n\,1000)),scale=320:240,tile=2x3' "${fi:r}.png"
+    done
+}
 
 dis() {
     xrandr %%xrandr
