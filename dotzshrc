@@ -120,7 +120,9 @@ mhbp() {
 }
 thumb() {
     for fi in *.{m4v,mp4,flv}; do
-        ffmpeg -ss 00:00:10 -i "$fi" -vf 'select=not(mod(n\,1000)),scale=320:240,tile=2x3' "${fi:r}.png"
+        frames=$(ffprobe -show_streams "$fi" 2>/dev/null | grep -m 1 "^nb_frames" | cut -d '=' -f 2)
+        frames=$((frames/6))
+        ffmpeg -ss 00:00:10 -i "$fi" -vf "select=not(mod(n\,$frames)),scale=320:240,tile=2x3" "${fi:r}.png"
     done
 }
 
