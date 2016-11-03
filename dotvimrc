@@ -34,6 +34,7 @@ Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh --gocode-completer'}
 Plug 'wting/rust.vim'
 Plug 'YankRing.vim'
+Plug 'kballard/vim-swift'
 
 Plug 'AlxHnr/clear_colors'
 Plug 'romainl/Apprentice'
@@ -260,3 +261,6 @@ endif
 
 "sneak
 let g:sneak#s_next=1
+
+"vim-swift
+let g:swift_developer_dir='/Library/Developer'
