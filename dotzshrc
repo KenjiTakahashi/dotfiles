@@ -35,9 +35,10 @@ vew=$(which virtualenvwrapper.sh)
 
 [[ -f $HOME/.dircolors ]] && eval $(dircolors $HOME/.dircolors)
 
-export GOPATH=$HOME/languages/go
+export L=$HOME/languages
+export GOPATH=$L/.go:$L/go
 export XDG_CONFIG_HOME=$HOME/.config
-export PATH=$HOME/.bin:$GOPATH/bin:$PATH
+export PATH=/usr/local/sbin:$HOME/.bin:$L/go/bin:$L/.go/bin:$PATH
 export EDITOR="vim"
 alias gcam='gc -am'
 alias gf='g fetch'
