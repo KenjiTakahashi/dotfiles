@@ -43,7 +43,11 @@ def main():
 
     def aux(src, dest):
         if isinstance(dest, dict):
-            templates = dest['templates']
+            try:
+                templates = dest['templates']
+            except KeyError:
+                print(src, dest)
+                os.exit(1)
             try:
                 for tname, tval in templates.items():
                     templates[tname] = tval.format(**vars)

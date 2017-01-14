@@ -17,9 +17,7 @@
                 "ranger": "ranger"
             }
         },
-        "Karabiner": {
-            "destination": "~/Library/Application Support/Karabiner"
-        }
+        "Karabiner": "~/Library/Application Support/Karabiner"
     },
     "commands": [
         "go get -u golang.org/x/tools/cmd/goimports",
@@ -28,9 +26,9 @@
 
         "vim +PlugUpdate +qall",
 
-        "git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh",
-
         "defaults write com.apple.dashboard mcx-disabled -boolean YES",
-        "killall Dock"
+        "killall Dock",
+
+        "git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh"
     ]
 }
