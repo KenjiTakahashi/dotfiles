@@ -34,7 +34,7 @@ Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh --gocode-completer'}
 Plug 'wting/rust.vim'
 Plug 'YankRing.vim'
-Plug 'kballard/vim-swift'
+Plug 'keith/swift.vim'
 
 Plug 'AlxHnr/clear_colors'
 Plug 'romainl/Apprentice'
