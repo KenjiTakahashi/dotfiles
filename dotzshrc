@@ -138,3 +138,5 @@ unalias pacmir
 bindkey '^R' history-incremental-search-backward
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+eval `keychain --eval --quiet id_rsa`
