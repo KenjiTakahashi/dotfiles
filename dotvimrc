@@ -243,7 +243,7 @@ au BufNewFile,BufRead *.go let g:blacklist = [
     \'byte', 'return', 'true', 'false',
     \'package', 'import', 'bool', 'type',
     \'struct', 'var', 'int64', 'uint', 'int',
-\ ]
+\]
 
 "tcomment
 let g:tcommentMapLeaderOp1=',c'
@@ -270,6 +270,9 @@ endif
 let g:sneak#s_next=1
 
 "ale
+let g:ale_linters = {
+    \'rust': [],
+\}
 let g:ale_sign_column_always=1
 let g:ale_sign_error='✖'
 let g:ale_sign_warning='⚠'
