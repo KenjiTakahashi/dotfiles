@@ -1,4 +1,4 @@
-gtk-theme-name="FlatStudioDark"
+gtk-theme-name="Vertex-Dark"
 gtk-icon-theme-name="AwOken"
 style "font" {
     font_name = "Liberation Serif Regular 10"
