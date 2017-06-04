@@ -10,6 +10,8 @@ redshift -l 51.12493:17.05357 -m vidmode &
 canto-daemon &
 systemctl --user start pulseaudio
 
+export QT_QPA_PLATFORMTHEME=gtk2
+
 if uname -v | grep -q "NixOS"; then
     FONTDIR="/run/current-system/sw/share/X11-fonts"
 else
