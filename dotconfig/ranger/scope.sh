@@ -40,12 +40,9 @@ HIGHLIGHT_STYLE='pablo'
 PYGMENTIZE_STYLE='autumn'
 
 
-echo "${FILE_EXTENSION_LOWER}" >> $HOME/b
 handle_extension() {
-    echo "${FILE_EXTENSION_LOWER}" >> $HOME/b
     case "${FILE_EXTENSION_LOWER}" in
         sms)
-            echo "a" >> $HOME/b
             hexdump -C "${FILE_PATH}" && exit 5
             exit 0;;
         # Archive
