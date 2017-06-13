@@ -1,0 +1,50 @@
+{
+    "vars": {
+        "xrandr": "--output DP-2 --output DP-4 --right-of DP-2 --rotate left",
+        "wallpaper": "$HOME/wallpapers/luna.png"
+    },
+    "links": {
+        "dotgitignore": "~/.gitignore",
+        "dotvimrc": "~/.vimrc",
+        "dotvim": "~/.vim",
+        "dotgtkrc-2.0": "~/.gtkrc-2.0",
+        "dotinterrobangrc": "~/.interrobangrc",
+        "dotxinitrc": "~/.xinitrc",
+        "dotxprofile": {
+            "destination": "~/.xprofile",
+            "templates": {
+                "xrandr": "{xrandr}",
+                "wallpaper": "{wallpaper} {wallpaper}"
+            }
+        },
+        "dotXresources": "~/.Xresources",
+        "dotzshrc": {
+            "destination": "~/.zshrc",
+            "templates": {
+                "xrandr": "{xrandr}",
+                "wallpaper": "{wallpaper} {wallpaper}",
+                "theme": "lambda"
+            }
+        },
+        "dotdircolors": "~/.dircolors",
+        "dotconfig": {
+            "destination": "~/.config",
+            "links": {
+                "bspwm": "bspwm",
+                "gtk-3.0": "gtk-3.0",
+                "osop": "osop",
+                "sxhkd": "sxhkd",
+                "ranger": "ranger",
+                "termite": "termite"
+            }
+        }
+    },
+    "commands": [
+        "go get -u golang.org/x/tools/cmd/goimports",
+        "go get -u github.com/nsf/gocode",
+        "go get -u github.com/shurcooL/binstale",
+
+        "vim +PlugUpdate +qall",
+        "git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh"
+    ]
+}
