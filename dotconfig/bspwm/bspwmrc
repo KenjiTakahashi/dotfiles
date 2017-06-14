@@ -33,3 +33,5 @@ else
 fi
 
 osop -c bsp.toml 2>/tmp/osop1| gobar --bottom --fg=0xff8e8e8e --bg=0xff383a3b --fonts=$FONTDIR/LiberationMono-Regular.ttf:11 &
+
+xprop -id "$(xprop -root -notype _NET_SUPPORTING_WM_CHECK | awk -F'# ' '{print $2}')" -f _NET_WM_NAME 8u -set _NET_WM_NAME "LG3D"
