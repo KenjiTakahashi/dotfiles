@@ -33,7 +33,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh --gocode-completer'}
 Plug 'wting/rust.vim'
-Plug 'YankRing.vim'
+Plug 'vim-scripts/YankRing.vim'
 Plug 'keith/swift.vim'
 Plug 'EinfachToll/DidYouMean'
 
