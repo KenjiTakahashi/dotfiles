@@ -31,7 +31,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
-Plug 'Valloric/YouCompleteMe', {'do': './install.sh --gocode-completer'}
+Plug 'maralla/completor.vim'
 Plug 'wting/rust.vim'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'keith/swift.vim'
@@ -116,7 +116,6 @@ autocmd FilterWritePre * if &diff | setlocal wrap< | endif
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set completeopt=menu,preview
 set expandtab
 autocmd FileType jade set sw=4
 autocmd FileType stylus set sw=4
@@ -282,3 +281,7 @@ highlight ALEErrorSign ctermfg=darkred
 highlight ALEWarningSign ctermfg=darkyellow
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
