@@ -151,11 +151,12 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_max_height=20
 let g:ctrlp_dotfiles=0
 let g:ctrlp_switch_buffer=0
-let g:ctrlp_extensions=['buffertag']
+let g:ctrlp_extensions=['tag', 'buffertag']
 let g:ctrlp_map='mf'
 let g:ctrlp_buftag_types = {'objc': '--language-force=ObjectiveC'}
 nmap <silent> mb :CtrlPBuffer<CR>
-nmap <silent> mt :CtrlPBufTagAll<CR>
+nmap <silent> mt :CtrlPTag<CR>
+nmap <silent> my :CtrlPBufTag<CR>
 nmap <silent> mr :CtrlPMRU<CR>
 set wildignore+=*~
 set wildignore+=node_modules
