@@ -246,7 +246,7 @@ au BufNewFile,BufRead *.go let g:blacklist = [
 \]
 
 "tcomment
-let g:tcommentMapLeaderOp1=',c'
+let g:tcomment_opleader1=',c'
 
 "easy-align
 vmap <Enter> <Plug>(EasyAlign)
