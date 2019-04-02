@@ -39,17 +39,19 @@ Plug 'EinfachToll/DidYouMean'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 
-Plug 'AlxHnr/clear_colors'
-Plug 'romainl/Apprentice'
 Plug 'w0ng/vim-hybrid'
-Plug 'zefei/simple-dark'
+Plug 'AlessandroYorba/Alduin'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
 set t_Co=256
 set background=dark
 let g:hybrid_custom_term_colors=1
-silent! colorscheme hybrid
+" silent! colorscheme hybrid
+let g:alduin_Shout_Fire_Breath=1
+" silent! colorscheme alduin
+silent! colorscheme nord
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -211,7 +213,9 @@ let g:airline_mode_map = {
     \ 'S'  : 's⋅l',
     \ '' : 's⋅b',
 \ }
-let g:airline_theme='hybrid'
+" let g:airline_theme='hybrid'
+" let g:airline_theme='alduin'
+let g:airline_theme='nord'
 let g:airline_exclude_preview=1
 let g:airline#extensions#tagbar#enabled=0
 let g:airline#extensions#csv#enabled=0
