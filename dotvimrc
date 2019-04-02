@@ -1,4 +1,4 @@
-"Karol 'Kenji Takahashi' Woźniak © 2012 - 2015
+"Karol 'Kenji Takahashi' Woźniak © 2012 - 2019
 
 set nocompatible
 filetype off
@@ -36,6 +36,8 @@ Plug 'wting/rust.vim'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'keith/swift.vim'
 Plug 'EinfachToll/DidYouMean'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
 
 Plug 'AlxHnr/clear_colors'
 Plug 'romainl/Apprentice'
@@ -286,3 +288,5 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+
+let g:tsuquyomi_disable_quickfix=1
