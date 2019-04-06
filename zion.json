@@ -37,7 +37,9 @@
                 "ranger": "ranger",
                 "termite": "termite"
             }
-        }
+        },
+        "dottmux.conf": "~/.tmux.conf",
+        "dottmux": "~/.tmux"
     },
     "commands": [
         "go get -u golang.org/x/tools/cmd/goimports",

@@ -7,3 +7,5 @@ dotconfig/ranger/bookmarks
 dotconfig/gtk-3.0/bookmarks
 dotvim/undodir
 dotvim/view
+dottmux/plugins/*
+!dottmux/plugins/tpm
