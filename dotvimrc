@@ -31,7 +31,6 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
-Plug 'maralla/completor.vim'
 Plug 'wting/rust.vim'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'keith/swift.vim'
@@ -219,6 +218,7 @@ let g:airline_theme='nord'
 let g:airline_exclude_preview=1
 let g:airline#extensions#tagbar#enabled=0
 let g:airline#extensions#csv#enabled=0
+let g:airline#extensions#ale#enabled=1
 let g:airline#extensions#ale#error_symbol='✖ '
 let g:airline#extensions#ale#warning_symbol='⚠ '
 
@@ -276,9 +276,17 @@ endif
 let g:sneak#s_next=1
 
 "ale
+set completeopt-=preview
 let g:ale_linters = {
-    \'rust': [],
+    \'python': ['pyls'],
+    \'rust': ['rls'],
 \}
+let g:ale_fixers = {
+    \'python': ['black'],
+\}
+let g:ale_rust_rls_toolchain='stable'
+let g:ale_completion_enabled=1
+let g:ale_fix_on_save=1
 let g:ale_sign_column_always=1
 let g:ale_sign_error='✖'
 let g:ale_sign_warning='⚠'
