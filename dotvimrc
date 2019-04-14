@@ -277,6 +277,7 @@ let g:sneak#s_next=1
 
 "ale
 set completeopt-=preview
+set completeopt+=noinsert
 let g:ale_linters = {
     \'python': ['pyls'],
     \'rust': ['rls'],
