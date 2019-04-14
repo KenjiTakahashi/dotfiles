@@ -283,7 +283,11 @@ let g:ale_linters = {
     \'rust': ['rls'],
 \}
 let g:ale_fixers = {
+    \'css': ['prettier'],
+    \'html': ['prettier'],
+    \'javascript': ['prettier'],
     \'python': ['black'],
+    \'typescript': ['prettier'],
 \}
 let g:ale_rust_rls_toolchain='stable'
 let g:ale_completion_enabled=1
