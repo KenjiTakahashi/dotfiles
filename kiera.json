@@ -16,7 +16,9 @@
             "links": {
                 "ranger": "ranger"
             }
-        }
+        },
+        "dottmux.conf": "~/.tmux.conf",
+        "dottmux": "~/.tmux"
     },
     "commands": [
         "vim +PlugUpdate +qall",
