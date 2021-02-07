@@ -1,0 +1,9 @@
+*~
+.*swp
+.td
+tags
+tags.lock
+tags.temp
+.DS_Store
+pyproject.toml
+*.back
