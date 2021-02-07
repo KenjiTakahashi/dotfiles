@@ -1,0 +1,38 @@
+global !p
+import vim
+from datetime import datetime
+c = vim.eval("&commentstring").split("%s")
+y = datetime.today().year
+s = """
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+endglobal
+
+snippet gpl "GPL header" b
+`!p
+snip.rv = c[0]
+if c[1]:
+    snip.rv += "\n"
+` This is a part of ${1:name} @ http://${2:website}
+`!p
+if not c[1]:
+    snip.rv = c[0]
+snip.rv += ' Karol "Kenji Takahashi" Woźniak © {0}\n'.format(y)
+if not c[1]:
+    snip.rv += "".join(["{0}{1}\n".format(c[0], l) for l in s.split("\n")][:-1])
+else:
+    snip.rv += s
+    snip.rv += c[1]
+`
+endsnippet
