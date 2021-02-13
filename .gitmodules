@@ -1,3 +1,6 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule ".config/fish/.fisher"]
+	path = .config/fish/.fisher
+	url = https://github.com/jorgebucaran/fisher

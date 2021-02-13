@@ -1,0 +1,1 @@
+../.fisher/functions/fisher.fish
