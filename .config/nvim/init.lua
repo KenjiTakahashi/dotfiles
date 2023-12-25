@@ -1,3 +1,6 @@
+if vim.g.vscode then -- TODO revisit later
+	return
+end
 -- Remap leader key to `,`
 vim.g.mapleader = ","
 -- Visual size of hard tabs
@@ -5,7 +8,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 -- Display line numbers in gutter
 vim.opt.number = true
--- Use GUI colors also in terminal
+-- Use GUI colors also in terminal, if available
 if vim.fn.has("termguicolors") then
 	vim.opt.termguicolors = true
 end
@@ -41,7 +44,7 @@ vim.diagnostic._get_virt_text_chunks = function(line_diags, opts)
 		local v = result[i]
 		table.insert(r2, string.format("%s %d", v.hl, v.n))
 	end
-	vim.pretty_print(r2)
+	-- vim.pretty_print(r2)
 
 	return {{string.rep(" ", spacing)},{ table.concat(r2, " "), "DiagnosticVirtualTextError" }}
 end
@@ -96,6 +99,9 @@ require("packer").startup(function(use)
 	}
 	-- use "farmergreg/vim-lastplace"
 	use "ethanholz/nvim-lastplace" -- restoring line position
+	use "windwp/nvim-projectconfig"
+	use "~/+projects/_exp/project.nvim"
+	-- use "ahmedkhalf/project.nvim"
 
 	use "savq/melange"
 end)
@@ -104,6 +110,33 @@ end)
 vim.cmd("colorscheme melange")
 
 require("nvim-lastplace").setup {}
+
+local lsp_format = require("lsp-format")
+lsp_format.setup {}
+
+local function project_dependent_setup()
+	require("nvim-projectconfig").setup {}
+	vim.print(kenji_goimports_local)
+
+	local null_ls = require("null-ls")
+	null_ls.setup {
+		sources = {
+			null_ls.builtins.formatting.prettier,
+			null_ls.builtins.formatting.goimports.with({
+				command = "gosimports",
+				extra_args = kenji_goimports_local and { "-local", kenji_goimports_local } or {},
+			}),
+		},
+		log_level = "debug",
+		on_attach = lsp_format.on_attach,
+	}
+end
+require("project_nvim").setup {
+	silent_chdir = false,
+	detection_methods = { "pattern" },
+	patterns = { ".git" },
+	post_hook = project_dependent_setup,
+}
 
 local luasnip = require("luasnip")
 
@@ -146,14 +179,11 @@ cmp.setup {
 		ghost_text = true,
 	},
 }
-local cmpCaps = require("cmp_nvim_lsp").default_capabilities()
+local cmp_caps = require("cmp_nvim_lsp").default_capabilities()
 
 local lsp = require("lspconfig")
-local lspFormat = require("lsp-format")
-
-lspFormat.setup {}
 lsp.gopls.setup {
-	capabilities = cmpCaps,
+	capabilities = cmp_caps,
 	init_options = {
 		usePlaceholders = true, -- for arguments placeholders
 	},
@@ -163,27 +193,14 @@ lsp.gopls.setup {
 }
 lsp.golangci_lint_ls.setup {}
 lsp.tsserver.setup {
-	capabilities = cmpCaps,
+	capabilities = cmp_caps,
 	settings = {
 		completions = {
 			completeFunctionCalls = true,
-		}
+		},
 	},
 }
 lsp.eslint.setup {}
-local null_ls = require("null-ls")
-null_ls.setup {
-	sources = {
-		null_ls.builtins.formatting.prettier,
-		null_ls.builtins.formatting.goimports.with({
-			command = "gosimports",
-			-- FIXME The local parameter differs between projects
-			extra_args = { "-local", "bitbucket.org/bugfender/remote-logger-web" },
-		}),
-	},
-	log_level = "debug",
-	on_attach = lspFormat.on_attach,
-}
 -- Synchronous formatting on :wq
 vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
