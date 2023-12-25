@@ -4,3 +4,6 @@
 [submodule ".config/fish/.fisher"]
 	path = .config/fish/.fisher
 	url = https://github.com/jorgebucaran/fisher
+[submodule ".config/nvim/pack/packer/start/packer.nvim"]
+	path = .config/nvim/pack/packer/start/packer.nvim
+	url = https://github.com/wbthomason/packer.nvim

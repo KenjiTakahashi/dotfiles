@@ -1,0 +1,6 @@
+# This is Git's per-user configuration file.
+[user]
+	name = KenjiTakahashi
+	email = wozniakk@gmail.com
+[core]
+	excludesfile = /Users/kenji/.config/gitignore.global
