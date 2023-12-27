@@ -75,54 +75,80 @@ vim.diagnostic.config({
 --   sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
 -- ]]
 
--- Load plugins
--- START Changes require :PackerCompile
-require("packer").startup(function(use)
-	use "wbthomason/packer.nvim" -- Plugins manager itself
-	use "neovim/nvim-lspconfig" -- Common configurations for LSPs
-	use "lukas-reineke/lsp-format.nvim" -- Autoformatting using lSPs
-	use {
-		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			require("nvim-treesitter.install").update({ with_sync = true })()
-		end,
-	}
-	use "JoosepAlviste/nvim-ts-context-commentstring"
-	use "numToStr/Comment.nvim" -- Comments toggling
-	use "L3MON4D3/LuaSnip" -- snippets engine
-	use "hrsh7th/nvim-cmp" -- autocompletion
-	use "hrsh7th/cmp-nvim-lsp" -- LSP support for nvim-cmp
-	use "saadparwaiz1/cmp_luasnip" -- nvim-cmp <-> LuaSnip integration
-	use { -- Formatting using non-LSP tools
-		"jose-elias-alvarez/null-ls.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-	}
-	-- use "farmergreg/vim-lastplace"
-	use "ethanholz/nvim-lastplace" -- restoring line position
-	use "windwp/nvim-projectconfig"
-	use "~/+projects/_exp/project.nvim"
-	-- use "ahmedkhalf/project.nvim"
+-- XXX Experimental, revisit later
+-- vim.loader.enable()
 
-	use "savq/melange"
-end)
--- END
+require("lazy").setup({
+	{ "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000 }, -- colorscheme
 
-vim.cmd("colorscheme melange")
+	"ethanholz/nvim-lastplace", -- restoring line position
+	-- "farmergreg/vim-lastplace" -- old (vimscript) version of the above (in case)
 
-require("nvim-lastplace").setup {}
+	{ "lukas-reineke/lsp-format.nvim", version = "2.6.3" }, -- LSP autoformatting
+
+	{ "neovim/nvim-lspconfig", version = "0.1.7" }, -- LSP configs
+
+	{ "nvim-treesitter/nvim-treesitter", version = "0.9.1", build = ":TSUpdate" },
+
+	{ "numToStr/Comment.nvim", version = "0.8.0", dependencies = { -- Comments toggling
+		"JoosepAlviste/nvim-ts-context-commentstring",
+	} },
+
+	-- { "ms-jpq/coq_nvim", name = "coq", branch = "coq" },
+	-- { "ms-jpq/coq.artifacts", branch = "artifacts" },
+	"hrsh7th/nvim-cmp", -- completions
+	"hrsh7th/cmp-nvim-lsp", -- LSP source for completions
+	{ "L3MON4D3/LuaSnip", version = "2.1.1", dependencies = { -- snippets engine
+		"rafamadriz/friendly-snippets", -- snippets database
+	} },
+	"saadparwaiz1/cmp_luasnip", -- snippets support for completions
+
+	{ "nvimtools/none-ls.nvim", dependencies = {
+		"nvim-lua/plenary.nvim",
+	} },
+	"windwp/nvim-projectconfig",
+	{ dir = "~/+projects/_exp/project.nvim" },
+	-- "ahmedkhalf/project.nvim" -- XXX Upstream of the above
+})
+
+require("nvim-treesitter.configs").setup {
+	ensure_installed = {
+		"go",
+		"tsx",
+		"typescript",
+	},
+}
+
+vim.g.skip_ts_context_commentstring_module = true
+require("ts_context_commentstring").setup({
+	enable_autocmd = false,
+})
+
+require("catppuccin").setup({
+	flavour = "macchiato",
+	dim_inactive = {
+		enabled = true,
+	},
+	integrations = {
+		cmp = true,
+	},
+})
+vim.cmd.colorscheme("catppuccin")
+
+require("nvim-lastplace").setup({})
 
 local lsp_format = require("lsp-format")
-lsp_format.setup {}
+lsp_format.setup({})
 
 local function project_dependent_setup()
-	require("nvim-projectconfig").setup {}
+	require("nvim-projectconfig").setup({})
 	vim.print(kenji_goimports_local)
 
-	local null_ls = require("null-ls")
-	null_ls.setup {
+	local none_ls = require("null-ls")
+	none_ls.setup {
 		sources = {
-			null_ls.builtins.formatting.prettier,
-			null_ls.builtins.formatting.goimports.with({
+			none_ls.builtins.formatting.prettier,
+			none_ls.builtins.formatting.goimports.with({
 				command = "gosimports",
 				extra_args = kenji_goimports_local and { "-local", kenji_goimports_local } or {},
 			}),
@@ -131,32 +157,57 @@ local function project_dependent_setup()
 		on_attach = lsp_format.on_attach,
 	}
 end
-require("project_nvim").setup {
+require("project_nvim").setup({
 	silent_chdir = false,
 	detection_methods = { "pattern" },
 	patterns = { ".git" },
 	post_hook = project_dependent_setup,
-}
+})
 
 local luasnip = require("luasnip")
+-- XXX Hack for undoing snippet insertion
+-- See https://github.com/L3MON4D3/LuaSnip/issues/830
+-- See https://github.com/L3MON4D3/LuaSnip/issues/797
+local luasnip_snip_expand = luasnip.snip_expand
+luasnip.snip_expand = function(...)
+	vim.o.undolevels = vim.o.undolevels
+	luasnip_snip_expand(...)
+end
+require("luasnip.loaders.from_vscode").lazy_load()
 
 local cmp = require("cmp")
-cmp.setup {
+cmp.setup({
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
 	},
-	mapping = cmp.mapping.preset.insert {
-		-- NOTE This is for triggering completion manually
-		["<C-h>"] = cmp.mapping.complete(),
-		["<C-l>"] = cmp.mapping.confirm({ select = true }),
+	mapping = cmp.mapping.preset.insert({
+		["<C-h>"] = cmp.mapping(function()
+			if cmp.visible() then
+				cmp.abort()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			elseif luasnip.in_snippet() then
+				vim.cmd.undo()
+				luasnip.unlink_current() -- XXX Is this the right function? [Seems to work]
+			else
+				cmp.complete()
+			end
+		end, { "i", "s" }),
+		["<C-l>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.confirm() -- XXX Use select = true or not?
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		-- XXX Any way to makes these circular?
 		["<C-j>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-				-- What about "has_words_before"?
 			else
 				fallback()
 			end
@@ -164,25 +215,39 @@ cmp.setup {
 		["<C-k>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
-	},
-	sources = cmp.config.sources {
+	}),
+	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+	}),
+	-- TODO Do this better (use lspkind?)
+	-- For now just want to know where suggestions come from
+	formatting = {
+		format = function(entry, vim_item)
+			vim_item.menu = ({
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				luasnip = "[LuaSnip]",
+				nvim_lua = "[Lua]",
+				latex_symbols = "[LaTeX]",
+			})[entry.source.name]
+			return vim_item
+		end
 	},
 	experimental = {
 		ghost_text = true,
 	},
-}
+})
+
 local cmp_caps = require("cmp_nvim_lsp").default_capabilities()
 
 local lsp = require("lspconfig")
-lsp.gopls.setup {
+
+lsp.gopls.setup({
 	capabilities = cmp_caps,
 	init_options = {
 		usePlaceholders = true, -- for arguments placeholders
@@ -190,27 +255,26 @@ lsp.gopls.setup {
 	-- 				cmd = function()
 	-- 					print(1)
 	-- 				end,
-}
-lsp.golangci_lint_ls.setup {}
-lsp.tsserver.setup {
+})
+lsp.golangci_lint_ls.setup({})
+lsp.tsserver.setup({
 	capabilities = cmp_caps,
 	settings = {
 		completions = {
 			completeFunctionCalls = true,
 		},
 	},
-}
-lsp.eslint.setup {}
+})
+lsp.eslint.setup({})
+-- local coq = require("coq")
+-- lsp.gopls.setup(coq.lsp_ensure_capabilities({
+-- 	init_options = {
+-- 		usePlaceholders = true,
+-- 	},
+-- }))
+
 -- Synchronous formatting on :wq
 vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
-
-require("nvim-treesitter.configs").setup {
-	ensure_installed = { "tsx", "typescript" },
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
-}
 
 require("Comment").setup {
 	pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
@@ -223,16 +287,3 @@ require("Comment").setup {
 		block = "<leader>b",
 	},
 }
-
-function luasnip_jump_or_fallback(step, key)
-	return function()
-		if luasnip.jumpable(step) then
-			luasnip.jump(step)
-		else
-			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, false, true), "nt", false)
-		end
-	end
-end
-
-vim.keymap.set({ "i", "s" }, "<C-j>", luasnip_jump_or_fallback(1, "<C-j>"), { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-k>", luasnip_jump_or_fallback(-1, "<C-k>"), { silent = true })
