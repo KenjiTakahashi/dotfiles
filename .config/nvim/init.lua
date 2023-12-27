@@ -106,18 +106,19 @@ require("lazy").setup({
 	{ "nvimtools/none-ls.nvim", dependencies = {
 		"nvim-lua/plenary.nvim",
 	} },
+
 	"windwp/nvim-projectconfig",
 	{ dir = "~/+projects/_exp/project.nvim" },
 	-- "ahmedkhalf/project.nvim" -- XXX Upstream of the above
 })
 
-require("nvim-treesitter.configs").setup {
+require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"go",
 		"tsx",
 		"typescript",
 	},
-}
+})
 
 vim.g.skip_ts_context_commentstring_module = true
 require("ts_context_commentstring").setup({
@@ -136,6 +137,18 @@ require("catppuccin").setup({
 vim.cmd.colorscheme("catppuccin")
 
 require("nvim-lastplace").setup({})
+
+require("Comment").setup({
+	pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+	toggler = {
+		line = "<leader>cc",
+		block = "<leader>bc",
+	},
+	opleader = {
+		line = "<leader>c",
+		block = "<leader>b",
+	},
+})
 
 local lsp_format = require("lsp-format")
 lsp_format.setup({})
@@ -275,15 +288,3 @@ lsp.eslint.setup({})
 
 -- Synchronous formatting on :wq
 vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
-
-require("Comment").setup {
-	pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-	toggler = {
-		line = "<leader>cc",
-		block = "<leader>bc",
-	},
-	opleader = {
-		line = "<leader>c",
-		block = "<leader>b",
-	},
-}

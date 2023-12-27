@@ -4,6 +4,8 @@ set -g fish_greeting
 
 eval (/opt/homebrew/bin/brew shellenv)
 
+set -x EDITOR nvim
+
 set -x GOPATH "$HOME/.go/"
 fish_add_path -g "$HOME/.bin/" "$HOME/.local/bin/" "$GOPATH/bin/" "$HOME/.cargo/bin" "$HOME/.docker/bin"
 
