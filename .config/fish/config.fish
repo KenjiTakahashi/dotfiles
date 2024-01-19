@@ -15,7 +15,7 @@ alias .f='git --git-dir="$HOME/.files/" --work-tree=$HOME'
 
 alias f='ranger'
 
-alias t='tmux'
+alias t='tmux -2'
 alias tn='t'
 
 alias g='git'
@@ -23,3 +23,5 @@ alias gst='g st'
 alias gd='g d'
 
 alias v-c='video-compare -m vstack -d -w x1600'
+
+alias ytd='yt-dlp --no-mtime'
