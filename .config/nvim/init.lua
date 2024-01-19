@@ -103,20 +103,26 @@ require("lazy").setup({
 	} },
 	"saadparwaiz1/cmp_luasnip", -- snippets support for completions
 
+	{ "folke/flash.nvim", version = "1.18.2" },
+
 	{ "nvimtools/none-ls.nvim", dependencies = {
 		"nvim-lua/plenary.nvim",
 	} },
-
-	"windwp/nvim-projectconfig",
-	{ dir = "~/+projects/_exp/project.nvim" },
-	-- "ahmedkhalf/project.nvim" -- XXX Upstream of the above
 })
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"go",
+		"gomod",
+		"hcl",
+		"json",
+		"lua",
 		"tsx",
 		"typescript",
+	},
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
 	},
 })
 
@@ -124,17 +130,6 @@ vim.g.skip_ts_context_commentstring_module = true
 require("ts_context_commentstring").setup({
 	enable_autocmd = false,
 })
-
-require("catppuccin").setup({
-	flavour = "macchiato",
-	dim_inactive = {
-		enabled = true,
-	},
-	integrations = {
-		cmp = true,
-	},
-})
-vim.cmd.colorscheme("catppuccin")
 
 require("nvim-lastplace").setup({})
 
@@ -152,30 +147,6 @@ require("Comment").setup({
 
 local lsp_format = require("lsp-format")
 lsp_format.setup({})
-
-local function project_dependent_setup()
-	require("nvim-projectconfig").setup({})
-	vim.print(kenji_goimports_local)
-
-	local none_ls = require("null-ls")
-	none_ls.setup {
-		sources = {
-			none_ls.builtins.formatting.prettier,
-			none_ls.builtins.formatting.goimports.with({
-				command = "gosimports",
-				extra_args = kenji_goimports_local and { "-local", kenji_goimports_local } or {},
-			}),
-		},
-		log_level = "debug",
-		on_attach = lsp_format.on_attach,
-	}
-end
-require("project_nvim").setup({
-	silent_chdir = false,
-	detection_methods = { "pattern" },
-	patterns = { ".git" },
-	post_hook = project_dependent_setup,
-})
 
 local luasnip = require("luasnip")
 -- XXX Hack for undoing snippet insertion
@@ -288,3 +259,56 @@ lsp.eslint.setup({})
 
 -- Synchronous formatting on :wq
 vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+
+local flash = require("flash")
+flash.setup({})
+local function jump()
+	flash.jump({
+		-- search = {
+			-- incremental = true, -- XXX Interesting, but perhaps too chaotic?
+		-- },
+		jump = {
+			autojump = true,
+		},
+		label = {
+			after = false,
+			before = true,
+			style = "inline",
+		},
+	})
+end
+vim.keymap.set({ "n", "x", "o" }, "s", jump)
+
+require("project").setup({
+	callback = function(project_type, project_name)
+		local none_ls = require("null-ls")
+		local sources = {
+			none_ls.builtins.formatting.prettier,
+			none_ls.builtins.formatting.packer,
+		}
+		if project_type == "go" then
+			table.insert(sources, none_ls.builtins.formatting.goimports.with({
+				command = "gosimports",
+				extra_args = project_name and { "-local", project_name } or {},
+			}))
+		end
+
+		none_ls.setup({
+			sources = sources,
+			on_attach = lsp_format.on_attach,
+		})
+	end
+})
+
+require("catppuccin").setup({
+	flavour = "macchiato",
+	dim_inactive = {
+		enabled = true,
+	},
+	integrations = {
+		cmp = true,
+		flash = true,
+		treesitter = true,
+	},
+})
+vim.cmd.colorscheme("catppuccin")
