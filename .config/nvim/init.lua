@@ -18,7 +18,7 @@ vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.undofile = true
 
 local vts = {
-  [vim.diagnostic.severity.ERROR] = { ctermfg = 1, guifg = "Red", icon = "!" };                     
+  [vim.diagnostic.severity.ERROR] = { ctermfg = 1, guifg = "Red", icon = "!" };
   [vim.diagnostic.severity.WARN] = { ctermfg = 3, guifg = "Orange", icon = "?" };
   [vim.diagnostic.severity.INFO] = { ctermfg = 4, guifg = "LightBlue", icon = "i" };
   [vim.diagnostic.severity.HINT] = { ctermfg = 7, guifg = "LightGrey", icon = "h" };
