@@ -81,14 +81,14 @@ vim.diagnostic.config({
 require("lazy").setup({
 	{ "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000 }, -- colorscheme
 
-	"ethanholz/nvim-lastplace", -- restoring line position
-	-- "farmergreg/vim-lastplace" -- old (vimscript) version of the above (in case)
+	-- "ethanholz/nvim-lastplace", -- restoring line position
+	"farmergreg/vim-lastplace", -- vimscript version of the above
 
-	{ "lukas-reineke/lsp-format.nvim", version = "2.6.3" }, -- LSP autoformatting
+	{ "lukas-reineke/lsp-format.nvim", version = "2.7.2" }, -- LSP autoformatting
 
-	{ "neovim/nvim-lspconfig", version = "0.1.7" }, -- LSP configs
+	{ "neovim/nvim-lspconfig", version = "2.0.0" }, -- LSP configs
 
-	{ "nvim-treesitter/nvim-treesitter", version = "0.9.1", build = ":TSUpdate" },
+	{ "nvim-treesitter/nvim-treesitter", version = "0.9.3", build = ":TSUpdate" },
 
 	{ "numToStr/Comment.nvim", version = "0.8.0", dependencies = { -- Comments toggling
 		"JoosepAlviste/nvim-ts-context-commentstring",
@@ -98,12 +98,12 @@ require("lazy").setup({
 	-- { "ms-jpq/coq.artifacts", branch = "artifacts" },
 	"hrsh7th/nvim-cmp", -- completions
 	"hrsh7th/cmp-nvim-lsp", -- LSP source for completions
-	{ "L3MON4D3/LuaSnip", version = "2.1.1", dependencies = { -- snippets engine
+	{ "L3MON4D3/LuaSnip", version = "2.3.0", dependencies = { -- snippets engine
 		"rafamadriz/friendly-snippets", -- snippets database
 	} },
 	"saadparwaiz1/cmp_luasnip", -- snippets support for completions
 
-	{ "folke/flash.nvim", version = "1.18.2" },
+	{ "folke/flash.nvim", version = "2.1.0" },
 
 	{ "nvimtools/none-ls.nvim", dependencies = {
 		"nvim-lua/plenary.nvim",
@@ -131,7 +131,7 @@ require("ts_context_commentstring").setup({
 	enable_autocmd = false,
 })
 
-require("nvim-lastplace").setup({})
+-- require("nvim-lastplace").setup({})
 
 require("Comment").setup({
 	pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
@@ -241,7 +241,7 @@ lsp.gopls.setup({
 	-- 				end,
 })
 lsp.golangci_lint_ls.setup({})
-lsp.tsserver.setup({
+lsp.ts_ls.setup({
 	capabilities = cmp_caps,
 	settings = {
 		completions = {
