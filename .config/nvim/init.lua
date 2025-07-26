@@ -86,7 +86,7 @@ require("lazy").setup({
 
 	{ "lukas-reineke/lsp-format.nvim", version = "2.7.2" }, -- LSP autoformatting
 
-	{ "neovim/nvim-lspconfig", version = "2.0.0" }, -- LSP configs
+	{ "neovim/nvim-lspconfig", version = "2.3.0" }, -- LSP configs
 
 	{ "nvim-treesitter/nvim-treesitter", version = "0.9.3", build = ":TSUpdate" },
 
@@ -108,7 +108,25 @@ require("lazy").setup({
 	{ "nvimtools/none-ls.nvim", dependencies = {
 		"nvim-lua/plenary.nvim",
 	} },
+
+	{ "nvim-tree/nvim-tree.lua", version = "1.11.0", dependencies = {
+		"nvim-tree/nvim-web-devicons",
+	} },
 })
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require("nvim-tree").setup({
+	view = {
+		width = {},
+	},
+})
+vim.keymap.set({ "n", "x", "o" }, "tre", function()
+	require("nvim-tree.api").tree.find_file({
+		open = true,
+		focus = true,
+	})
+end)
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
@@ -229,9 +247,7 @@ cmp.setup({
 
 local cmp_caps = require("cmp_nvim_lsp").default_capabilities()
 
-local lsp = require("lspconfig")
-
-lsp.gopls.setup({
+vim.lsp.config("gopls", {
 	capabilities = cmp_caps,
 	init_options = {
 		usePlaceholders = true, -- for arguments placeholders
@@ -240,8 +256,10 @@ lsp.gopls.setup({
 	-- 					print(1)
 	-- 				end,
 })
-lsp.golangci_lint_ls.setup({})
-lsp.ts_ls.setup({
+vim.lsp.enable("gopls")
+vim.lsp.enable('golangci_lint_ls')
+
+vim.lsp.config("ts_ls", {
 	capabilities = cmp_caps,
 	settings = {
 		completions = {
@@ -249,7 +267,9 @@ lsp.ts_ls.setup({
 		},
 	},
 })
-lsp.eslint.setup({})
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("eslint")
+
 -- local coq = require("coq")
 -- lsp.gopls.setup(coq.lsp_ensure_capabilities({
 -- 	init_options = {
@@ -261,23 +281,38 @@ lsp.eslint.setup({})
 vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
 local flash = require("flash")
-flash.setup({})
-local function jump()
-	flash.jump({
-		-- search = {
-			-- incremental = true, -- XXX Interesting, but perhaps too chaotic?
-		-- },
-		jump = {
-			autojump = true,
+flash.setup({
+	-- search = {
+		-- incremental = true, -- XXX Interesting, but perhaps too chaotic?
+	-- },
+	label = {
+		after = false,
+		before = true,
+		style = "inline",
+	},
+	modes = {
+		search = {
+			enabled = true,
 		},
-		label = {
-			after = false,
-			before = true,
-			style = "inline",
+	},
+})
+vim.keymap.set({ "n", "x", "o" }, "s", function()
+	flash.jump({
+		search = {
+			wrap = false,
+			multi_window = false,
 		},
 	})
-end
-vim.keymap.set({ "n", "x", "o" }, "s", jump)
+end)
+vim.keymap.set({ "n", "x", "o" }, "S", function()
+	flash.jump({
+		search = {
+			forward = false,
+			wrap = false,
+			multi_window = false,
+		},
+	})
+end)
 
 require("project").setup({
 	callback = function(project_type, project_name)
@@ -309,6 +344,7 @@ require("catppuccin").setup({
 		cmp = true,
 		flash = true,
 		treesitter = true,
+		nvimtree = true,
 	},
 })
 vim.cmd.colorscheme("catppuccin")
